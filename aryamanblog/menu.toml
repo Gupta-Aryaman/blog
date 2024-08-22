@@ -1,0 +1,20 @@
+[home]
+    Name = "_index"
+    Title = "blog@aryaman"
+    URL = "/"
+    weight = 1
+
+[blog]
+    Name = "Blog"
+    URL = "/blog"
+    weight = 2
+
+[papershelf]
+    Name = "Papershelf"
+    URL = "/papershelf"
+    weight = 3
+
+[about]
+    Name = "About"
+    URL = "/about"
+    weight = 4
