@@ -5,6 +5,7 @@ date = "2023-05-31"
 description = "An all-you-need-to-know blog about decorators in python."
 
 tags = ["decorators","decorators-in-python","python",]
+newsletter_groups = ["blogs"]
 +++
 
 ## What on earth are decorators???

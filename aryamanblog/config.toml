@@ -50,3 +50,11 @@ ignoreErrors = ["error-disable-taxonomy"]
   # for details. An example TOML config that uses [ISO
   # 8601](https://en.wikipedia.org/wiki/ISO_8601) format:
   # dateFormat = "2006-01-02"
+
+[params.newsletter]
+enable = true
+title = ""
+content = "Want more content like thi? Join my newsletter down below to receive updates to your mailbox"
+mailchimpFormUrl = "https://space.us14.list-manage.com/subscribe/post?u=9826b167b24adbcba9091190f&amp;id=f90f480251&amp;f_id=00eb8fe1f0"
+mailchimpFormKey = "b_9826b167b24adbcba9091190f_f90f480251"
+

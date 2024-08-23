@@ -1,1 +1,63 @@
-{{ if ne .Site.Params.hideMadeWithLine true }}Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>{{ end }}
+
+
+
+{{ if and (ne .Site.Params.hideMadeWithLine true) (eq .Section "blog") }}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .newsletter-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+    .newsletter-container p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .newsletter-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .newsletter-input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px 0 0 5px;
+        flex: 1;
+    }
+    .newsletter-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        background-color: #555;
+        color: white;
+        cursor: pointer;
+        border-radius: 0 5px 5px 0;
+    }
+    .newsletter-button:hover {
+        background-color: #333;
+    }
+</style>
+</head>
+<body>
+
+
+
+<div class="newsletter-container">
+<p>Want more content like this? Join my newsletter down below to receive updates to your mailbox</p>
+<form class="newsletter-form" action="{{.Site.Params.newsletter.mailchimpFormUrl}}" method="post">
+    <input class="newsletter-input" type="email" name="EMAIL" placeholder="example@example.com" required>
+    <button class="newsletter-button" type="submit">Subscribe</button>
+</form>
+</div>
+
+{{ end }}
+
+
+{{ if ne .Site.Params.hideMadeWithLine true }}Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>
+{{ end }}

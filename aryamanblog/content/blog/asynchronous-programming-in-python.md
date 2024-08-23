@@ -5,6 +5,7 @@ date = "2023-09-21"
 description = "An optional description for SEO. If not provided, an automatically created summary will be used."
 
 tags = ["asynchronous","async","python",]
+newsletter_groups = ["blogs"]
 +++
 
 ### Sync vs Async

@@ -5,6 +5,7 @@ date = "2024-04-14"
 description = "An optional description for SEO. If not provided, an automatically created summary will be used."
 
 tags = ["replication","sharding","mongoDB","distributed-systems",]
+newsletter_groups = ["blogs"]
 +++
 
 Making a MongoDB cluster "Production Ready" by performing database Replication and Sharding (horizontal fragmentation)
