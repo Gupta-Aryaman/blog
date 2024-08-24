@@ -4,7 +4,7 @@ date = "2023-12-17"
 
 description = "This article talks about GIL in python and issues caused by it. It also looks into efforts made to overcome GIL, and how can you make your python code perform the best inspite of these 'issues'."
 
-tags = ["breaking-boundaries","gil","no-gil","python","multithreading",]
+tags = ["breaking-boundaries","gil","no-gil","python","multithreading","aryaman-batcave",]
 newsletter_groups = ["blogs"]
 +++
 

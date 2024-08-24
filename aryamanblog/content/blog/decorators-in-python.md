@@ -4,7 +4,7 @@ date = "2023-05-31"
 
 description = "An all-you-need-to-know blog about decorators in python."
 
-tags = ["decorators","decorators-in-python","python",]
+tags = ["decorators","decorators-in-python","python","aryaman-batcave",]
 newsletter_groups = ["blogs"]
 +++
 
