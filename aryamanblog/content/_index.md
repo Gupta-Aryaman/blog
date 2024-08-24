@@ -1,5 +1,5 @@
 +++
-title = "blog@aryaman"
+title = "home"
 +++
 
 ![](/images/home.jpg)

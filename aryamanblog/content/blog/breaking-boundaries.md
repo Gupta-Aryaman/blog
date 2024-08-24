@@ -560,20 +560,20 @@ Seeing the level of improvement nogil is able to achieve, this is a big proof of
 
 ### References -
 
-* [https://discuss.python.org/t/a-fast-free-threading-python/27903](https://discuss.python.org/t/a-fast-free-threading-python/27903)
+* [discuss.python.org/t/a-fast-free-threading-python/27903](https://discuss.python.org/t/a-fast-free-threading-python/27903)
     
-* [https://www.python.org/ftp/python/contrib-09-Dec-1999/System/threading.README](https://discuss.python.org/t/a-fast-free-threading-python/27903)
+* [python.org/ftp/python/contrib-09-Dec-1999/System/threading.README](https://discuss.python.org/t/a-fast-free-threading-python/27903)
     
-* [https://stackify.com/python-garbage-collection/](https://discuss.python.org/t/a-fast-free-threading-python/27903)
+* [stackify.com/python-garbage-collection/](https://discuss.python.org/t/a-fast-free-threading-python/27903)
     
 * [Larry Hastings - Removing Python's GIL: The Gilectomy - PyCon 2016](https://www.youtube.com/watch?v=P3AyI_u66Bw)
     
-* [http://dabeaz.blogspot.com/2011/08/inside-look-at-gil-removal-patch-of.html](https://discuss.python.org/t/a-fast-free-threading-python/27903)
+* [dabeaz.blogspot.com/2011/08/inside-look-at-gil-removal-patch-of.html](https://discuss.python.org/t/a-fast-free-threading-python/27903)
     
-* [https://pythoncapi.readthedocs.io/gilectomy.html](https://discuss.python.org/t/a-fast-free-threading-python/27903)
+* [pythoncapi.readthedocs.io/gilectomy.html](https://discuss.python.org/t/a-fast-free-threading-python/27903)
     
-* [https://github.com/larryhastings/gilectomy](https://discuss.python.org/t/a-fast-free-threading-python/27903)
+* [github.com/larryhastings/gilectomy](https://discuss.python.org/t/a-fast-free-threading-python/27903)
     
-* [https://github.com/colesbury/nogil](https://discuss.python.org/t/a-fast-free-threading-python/27903)
+* [github.com/colesbury/nogil](https://discuss.python.org/t/a-fast-free-threading-python/27903)
     
-* [https://docs.google.com/document/d/18CXhDb1ygxg-YXNBJNzfzZsDFosB5e6BfnXLlejd9l0](https://discuss.python.org/t/a-fast-free-threading-python/27903)
+* [docs.google.com/document/d/18CXhDb1ygxg-YXNBJNzfzZsDFosB5e6BfnXLlejd9l0](https://discuss.python.org/t/a-fast-free-threading-python/27903)

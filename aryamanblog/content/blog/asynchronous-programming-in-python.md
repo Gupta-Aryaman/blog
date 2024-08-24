@@ -2,8 +2,6 @@
 title = "Asynchronous Programming in Python"
 date = "2023-09-21"
 
-description = "An optional description for SEO. If not provided, an automatically created summary will be used."
-
 tags = ["asynchronous","async","python",]
 newsletter_groups = ["blogs"]
 +++
@@ -248,14 +246,14 @@ When we write `async def func_name()`, what we are doing is wrapping another fun
 
 ### References
 
-1. [https://deepsource.com/glossary/synchronous-programming](https://deepsource.com/glossary/synchronous-programming)
+* [deepsource.com/glossary/synchronous-programming](https://deepsource.com/glossary/synchronous-programming)
     
-2. [https://en.wikipedia.org/wiki/Asynchrony\_(computer\_programming)](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming))
+* [en.wikipedia.org/wiki/Asynchrony\_(computer\_programming)](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming))
     
-3. [https://asyncio.run/](https://asyncio.run/)
+* [asyncio.run/](https://asyncio.run/)
     
-4. [https://docs.python.org/3/library/asyncio-task.htm](https://docs.python.org/3/library/asyncio-task.html#coroutines)l
+* [docs.python.org/3/library/asyncio-task.htm](https://docs.python.org/3/library/asyncio-task.html#coroutines)
     
-5. [https://docs.python.org/3/library/asyncio-eventloop.html](https://docs.python.org/3/library/asyncio-eventloop.html)
+* [docs.python.org/3/library/asyncio-eventloop.html](https://docs.python.org/3/library/asyncio-eventloop.html)
     
-6. [https://www.youtube.com/@TechWithTim](https://www.youtube.com/@TechWithTim)
+* [youtube.com/@TechWithTim](https://www.youtube.com/@TechWithTim)

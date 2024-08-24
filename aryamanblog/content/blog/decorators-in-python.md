@@ -220,10 +220,10 @@ Overall, decorators are a powerful feature of Python that allows you to easily e
 
 ## References
 
-[https://www.geeksforgeeks.org/decorators-with-parameters-in-python/](https://www.geeksforgeeks.org/decorators-with-parameters-in-python/)
+* [geeksforgeeks.org/decorators-with-parameters-in-python/](https://www.geeksforgeeks.org/decorators-with-parameters-in-python/)
 
-[https://www.youtube.com/@socratica](https://www.youtube.com/@socratica)
+* [youtube.com/@socratica](https://www.youtube.com/@socratica)
 
-[https://stackoverflow.com/questions/5929107/decorators-with-parameters](https://stackoverflow.com/questions/5929107/decorators-with-parameters)
+* [stackoverflow.com/questions/5929107/decorators-with-parameters](https://stackoverflow.com/questions/5929107/decorators-with-parameters)
 
-[https://en.wikipedia.org/wiki/First-class\_citizen](https://en.wikipedia.org/wiki/First-class_citizen)
+* [en.wikipedia.org/wiki/First-class\_citizen](https://en.wikipedia.org/wiki/First-class_citizen)

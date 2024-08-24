@@ -2,8 +2,6 @@
 title = "Finding Success in a Dynamic Environment"
 date = "2023-07-25"
 
-description = "An optional description for SEO. If not provided, an automatically created summary will be used."
-
 tags = ["corporate","government-job","success",]
 newsletter_groups = ["blogs"]
 +++

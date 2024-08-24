@@ -2,8 +2,6 @@
 title = "Demystifying Replication and Sharding in MongoDB"
 date = "2024-04-14"
 
-description = "An optional description for SEO. If not provided, an automatically created summary will be used."
-
 tags = ["replication","sharding","mongoDB","distributed-systems",]
 newsletter_groups = ["blogs"]
 +++
@@ -337,12 +335,12 @@ Here we can see the architecture of our sharded cluster. It consists of -
 
 # References
 
-[https://www.mongodb.com/docs/manual/replication/](https://www.mongodb.com/docs/manual/replication/)
+* [mongodb.com/docs/manual/replication/](https://www.mongodb.com/docs/manual/replication/)
 
-[https://www.mongodb.com/docs/manual/sharding/](https://www.mongodb.com/docs/manual/sharding/)
+* [mongodb.com/docs/manual/sharding/](https://www.mongodb.com/docs/manual/sharding/)
 
-[https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/)
+* [mongodb.com/docs/manual/core/sharded-cluster-config-servers/](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/)
 
-[https://www.youtube.com/@vemarahub](https://www.youtube.com/@vemarahub)
+* [youtube.com/@vemarahub](https://www.youtube.com/@vemarahub)
 
-[engineeringdigest.net](https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbTNLVnQyczlPSDAtZHNWcVJDc1Axc0tKM0J0UXxBQ3Jtc0tsX2NSSEJiWTlnZG5Xc0VIUXJvLVJTSUs3OVk4RDZ6NGgwSEhQT2hJVkNUODFzNjVRRUl0WEl5enBPUDFvcDZZTGIweHJzaWpzQ1FMTWFiVHdGdE9FeXZtN2pGUWVTTFBmQTdCajlLMGFrNk1YSktaaw&q=https%3A%2F%2Fengineeringdigest.net%2F)
+* [engineeringdigest.net](https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbTNLVnQyczlPSDAtZHNWcVJDc1Axc0tKM0J0UXxBQ3Jtc0tsX2NSSEJiWTlnZG5Xc0VIUXJvLVJTSUs3OVk4RDZ6NGgwSEhQT2hJVkNUODFzNjVRRUl0WEl5enBPUDFvcDZZTGIweHJzaWpzQ1FMTWFiVHdGdE9FeXZtN2pGUWVTTFBmQTdCajlLMGFrNk1YSktaaw&q=https%3A%2F%2Fengineeringdigest.net%2F)

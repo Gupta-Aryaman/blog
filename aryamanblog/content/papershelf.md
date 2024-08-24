@@ -1,5 +1,5 @@
 +++
-title = "Papershelf"
+title = "papershelf"
 menu = "main"
 +++
 

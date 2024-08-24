@@ -1,63 +1,91 @@
-
-
-
 {{ if and (ne .Site.Params.hideMadeWithLine true) (eq .Section "blog") }}
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-    }
     .newsletter-container {
         width: 100%;
-        max-width: 400px;
+        max-width: 60%;
         margin: 0 auto;
         padding: 20px;
         text-align: center;
     }
+
     .newsletter-container p {
         font-size: 16px;
-        margin-bottom: 20px;
+        margin-bottom: -15px;
     }
+
+    .newsletter-container p:hover {
+        color: hotpink;
+    }
+
     .newsletter-form {
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
+        width: 100%;
     }
+
     .newsletter-input {
         padding: 10px;
         font-size: 16px;
-        border: 1px solid #ccc;
+        border: 0px solid #ccc;
         border-radius: 5px 0 0 5px;
         flex: 1;
+        width: 70%; /* Adjusted to take 70% of the available space */
     }
+
     .newsletter-button {
         padding: 10px 20px;
-        font-size: 16px;
+        font-size: 14px;
         border: none;
         background-color: #555;
         color: white;
         cursor: pointer;
         border-radius: 0 5px 5px 0;
+        width: 30%; /* Adjusted to take 30% of the available space */
+        box-sizing: border-box; /* Ensures padding is included in the width calculation */
     }
+
     .newsletter-button:hover {
-        background-color: #333;
+        background-color: rgb(187, 35, 111);
     }
+
+    /* Adjust the button size on smaller screens */
+    @media (max-width: 655px) {
+        .newsletter-input {
+            width: 60%;
+            font-size: 12px;
+        }
+
+        .newsletter-container {
+            max-width: 85%;
+        }
+
+        .newsletter-button {
+            width: 40%;
+            font-size: 12px; /* Adjust font size for smaller screens */
+        }
+    }
+</style>
 </style>
 </head>
 <body>
 
-
-
 <div class="newsletter-container">
-<p>Want more content like this? Join my newsletter down below to receive updates to your mailbox</p>
-<form class="newsletter-form" action="{{.Site.Params.newsletter.mailchimpFormUrl}}" method="post">
-    <input class="newsletter-input" type="email" name="EMAIL" placeholder="example@example.com" required>
-    <button class="newsletter-button" type="submit">Subscribe</button>
-</form>
+    <div class="p-group">
+        <p>this sounds fun</p>
+        <p>this sounds fun</p>
+        <p>this sounds fun</p>
+        <p>this sounds fun</p>
+    </div>
+    <!-- <p>this sounds fun</p> -->
+    <form class="newsletter-form" action="{{.Site.Params.newsletter.mailchimpFormUrl}}" method="post">
+        <input class="newsletter-input" type="email" name="EMAIL" placeholder="subscribe@newsletter.com" required>
+        <button class="newsletter-button" type="submit">Subscribe</button>
+    </form>
 </div>
 
 {{ end }}
-
 
 {{ if ne .Site.Params.hideMadeWithLine true }}Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>
 {{ end }}
