@@ -23,7 +23,7 @@ ignoreErrors = ["error-disable-taxonomy"]
   tags = "/blog/:slug"
 
 [params]
-  description = "this little corner of the internet is where my ideas, adventures, and favorite reads collide in a delightful cosmic dance."
+  description = "a corner where ideas, projects, and favorite reads come together"
 
   favicon = "images/favicon.png"
   
