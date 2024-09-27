@@ -5,7 +5,7 @@ menu = "main"
 
 ![](/images/about.jpg)
 
-i am arya-man.
+i am aryaman.
 
 appreciate you for being here.
 
