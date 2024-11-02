@@ -42,3 +42,7 @@ Follow the instructions on the [Hugo Installation Guide](https://gohugo.io/insta
 hugo server
 ```
 Open http://localhost:1313 with your browser to see the result.
+
+## Hosting on gh-pages
+For using hugo and hosting it on github-pages, refer this [video](https://www.youtube.com/watch?v=LIFvgrRxdt4). <br>
+For adding dynamic content (like newsletter) on hugo website, refer this [video](https://www.youtube.com/watch?v=YB1jijL26FM).
