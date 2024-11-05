@@ -1,8 +1,8 @@
 +++
-title = "From Scribbles to Structured Data: Using Spark NLP to Process Handwritten Medical Prescriptions"
+title = "From Scribbles to Structured Data: Processing Handwritten Prescriptions with Spark NLP"
 date = "2024-11-05T21:10:01+05:30"
 
-description = "This talks about a Spark NLP Approach to Doctor's Handwritten Prescription Processing. It also goes in depth of various concepts of NER model, Spark Pipeline with published paper references."
+description = "Using Spark NLP to Process Handwritten Medical Prescriptions and discuss various underlying concepts."
 
 tags = ["Spark-NLP","Handwritten-Prescription-Processing","Medical-Text-Extraction","NER","LSTM","Document","Char-CNN","BERT","BERT-Embeddings","CoNLL"]
 
@@ -18,7 +18,7 @@ Medical prescriptions, often scribbled in hurried handwriting, pose a significan
 
 Automating this process requires a robust combination of *Optical Character Recognition* (OCR) and *Natural Language Processing* (NLP) tools to accurately identify entities like medication names, dosages, and medical conditions. 
 
-In this article, we delve into a *Spark* NLP-based pipeline to convert handwritten prescriptions into structured, machine-readable text. Leveraging *BERT embeddings* for contextual understanding and a custom *Named Entity Recognition *(NER) model, this approach promises to streamline information extraction in medical workflows. From OCR text extraction to entity recognition and model training, each step is tailored to maximize accuracy for complex medical terminology.
+In this article, we delve into a *Spark* NLP-based pipeline to convert handwritten prescriptions into structured, machine-readable text. Leveraging *BERT embeddings* for contextual understanding and a custom *Named Entity Recognition*(NER) model, this approach promises to streamline information extraction in medical workflows. From OCR text extraction to entity recognition and model training, each step is tailored to maximize accuracy for complex medical terminology.
 
 ## 1. Extract Handwritten text using OCR
 The first and foremost step is to use an OCR to extract handwritten texts from the doctor's prescriptions. I have used [AWS Textract](https://aws.amazon.com/textract/) that automatically extracts text, handwriting, layout elements, and data from scanned documents. 
@@ -170,10 +170,10 @@ The `NerDLApproach` processes normal text through several steps similar to how a
 
 Let's consider an example to illustrate this process:
 
-**Input Text**: `"John Doe works at OpenAI."`
+**Input Text**: `"John Doe works at Store Ninja."`
 
 1. *Tokenization*:
-   - Tokens: `["John", "Doe", "works", "at", "OpenAI", "."]`
+   - Tokens: `["John", "Doe", "works", "at", "Store", "Ninja", "."]`
 
 2. *Character Embeddings*:
    - Characters for "John": `["J", "o", "h", "n"]`
@@ -187,7 +187,7 @@ Let's consider an example to illustrate this process:
 
 5. *BiLSTMs*:
    - BiLSTMs process the word embeddings and character-level features to capture contextual information.
-   - For example, the representation for "John" will consider the context provided by "Doe works at OpenAI."
+   - For example, the representation for "John" will consider the context provided by "Doe works at Store Ninja."
 
 6. *CRFs*:
    - CRFs predict the sequence of named entity tags.
@@ -426,22 +426,22 @@ As we concluded with predictions, the seamless interaction of components within 
 By combining cutting-edge technology with thoughtful design, we can significantly enhance the efficiency of healthcare processes, ultimately leading to improved patient outcomes and better management of medical information. As we continue to innovate in this space, the opportunities for developing advanced applications in the realm of healthcare data processing are endless.
 
 ## References
-1. “Spark NLP 5.5.1 ScalaDoc - com.johnsnowlabs.nlp.annotators.ner.dl.NerDLApproach,” Sparknlp.org, 2024. https://sparknlp.org/api/com/johnsnowlabs/nlp/annotators/ner/dl/NerDLApproach.
+[1] “Spark NLP 5.5.1 ScalaDoc - com.johnsnowlabs.nlp.annotators.ner.dl.NerDLApproach,” Sparknlp.org, 2024. https://sparknlp.org/api/com/johnsnowlabs/nlp/annotators/ner/dl/NerDLApproach.
 
-2. J. Barnard, “What are Word Embeddings? | IBM,” www.ibm.com, Jan. 23, 2024. https://www.ibm.com/topics/word-embeddings
+[2] J. Barnard, “What are Word Embeddings? | IBM,” www.ibm.com, Jan. 23, 2024. https://www.ibm.com/topics/word-embeddings
 
-3. Contextualized Embeddings and Bidirectional Attention: Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. Proceedings of NAACL-HLT, 4171–4186. https://arxiv.org/abs/1810.04805.
+[3] Contextualized Embeddings and Bidirectional Attention: Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. Proceedings of NAACL-HLT, 4171–4186. https://arxiv.org/abs/1810.04805.
 
-4. Handling Out-of-Vocabulary Words and Subword Tokenization: Sennrich, R., Haddow, B., & Birch, A. (2016). Neural Machine Translation of Rare Words with Subword Units. Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–1725. https://arxiv.org/abs/1508.07909.
+[4] Handling Out-of-Vocabulary Words and Subword Tokenization: Sennrich, R., Haddow, B., & Birch, A. (2016). Neural Machine Translation of Rare Words with Subword Units. Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–1725. https://arxiv.org/abs/1508.07909.
 
-5. Fine-Tuning and Performance on NER: Akbik, A., Blythe, D., & Vollgraf, R. (2018). Contextual String Embeddings for Sequence Labeling. Proceedings of the 27th International Conference on Computational Linguistics, 1638–1649. https://www.aclweb.org/anthology/C18-1139/.
+[5] Fine-Tuning and Performance on NER: Akbik, A., Blythe, D., & Vollgraf, R. (2018). Contextual String Embeddings for Sequence Labeling. Proceedings of the 27th International Conference on Computational Linguistics, 1638–1649. https://www.aclweb.org/anthology/C18-1139/.
 
-6. BERT’s Performance in Domain-Specific Applications: Lee, J., Yoon, W., Kim, S., Kim, D., Kim, S., So, C. H., & Kang, J. (2020). BioBERT: a pre-trained biomedical language representation model for biomedical text mining. Bioinformatics, 36(4), 1234-1240. https://academic.oup.com/bioinformatics/article/36/4/1234/5566506.
+[6] BERT’s Performance in Domain-Specific Applications: Lee, J., Yoon, W., Kim, S., Kim, D., Kim, S., So, C. H., & Kang, J. (2020). BioBERT: a pre-trained biomedical language representation model for biomedical text mining. Bioinformatics, 36(4), 1234-1240. https://academic.oup.com/bioinformatics/article/36/4/1234/5566506.
 
-7. J. P. C. Chiu and E. Nichols, “Named Entity Recognition with Bidirectional LSTM-CNNs,” Transactions of the Association for Computational Linguistics, vol. 4, pp. 357–370, Dec. 2016, doi: https://doi.org/10.1162/tacl_a_00104
+[7] J. P. C. Chiu and E. Nichols, “Named Entity Recognition with Bidirectional LSTM-CNNs,” Transactions of the Association for Computational Linguistics, vol. 4, pp. 357–370, Dec. 2016, doi: https://doi.org/10.1162/tacl_a_00104
 
-8. “Papers with Code - CoNLL-2003 Dataset,” paperswithcode.com. https://paperswithcode.com/dataset/conll-2003
+[8] “Papers with Code - CoNLL-2003 Dataset,” paperswithcode.com. https://paperswithcode.com/dataset/conll-2003
 
-9. “Papers with Code - 2010 i2b2/VA Dataset,” Paperswithcode.com, 2022. https://paperswithcode.com/dataset/2010-i2b2-va.
+[9] “Papers with Code - 2010 i2b2/VA Dataset,” Paperswithcode.com, 2022. https://paperswithcode.com/dataset/2010-i2b2-va.
 
-10. “Spark NLP 5.5.1 ScalaDoc - com.johnsnowlabs.nlp.DocumentAssembler,” Sparknlp.org, 2024. https://sparknlp.org/api/com/johnsnowlabs/nlp/DocumentAssembler.
+[10] “Spark NLP 5.5.1 ScalaDoc - com.johnsnowlabs.nlp.DocumentAssembler,” Sparknlp.org, 2024. https://sparknlp.org/api/com/johnsnowlabs/nlp/DocumentAssembler.
