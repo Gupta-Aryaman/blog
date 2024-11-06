@@ -18,6 +18,8 @@ Automating this process requires a robust combination of *Optical Character Reco
 
 In this article, we delve into a *Spark* NLP-based pipeline to convert handwritten prescriptions into structured, machine-readable text. Leveraging *BERT embeddings* for contextual understanding and a custom *Named Entity Recognition*(NER) model, this approach promises to streamline information extraction in medical workflows. From OCR text extraction to entity recognition and model training, each step is tailored to maximize accuracy for complex medical terminology.
 
+**[Github Link](https://github.com/Gupta-Aryaman/scanplus)**
+
 ## Table of Contents
 - [1. Extract Handwritten text using OCR](#1-extract-handwritten-text-using-ocr)
 - [2. Initializing the NER Model](#2-initializing-the-ner-model)
