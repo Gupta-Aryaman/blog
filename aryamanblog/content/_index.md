@@ -2,10 +2,18 @@
 title = "home"
 +++
 
-![](/images/home.jpg)
+![](/images/about.jpg)
 
-hi, i'm aryaman.
+I AM ARYAMAN.
 
-i read about new tech and write what i have learnt, when i have spare time. 
+APPRECIATE YOU FOR BEING HERE.
 
-i hope you are having an awesome day. let's get cozy, queue up some lo-fi music and start coding in my batcave.
+WHETHER I'M DISSECTING **MASSIVE SAAS ARCHITECTURES** OR **TINKERING WITH HARDWARE**, I THRIVE ON DIVING DEEP INTO THE DETAILS. SHARING WHAT I LEARN FEELS SUPER EMPOWERING, AND IT’S ALL FUELED BY MY CONSTANT HUNT FOR NEW CHALLENGES.
+
+THIS LITTLE CORNER OF THE INTERNET HAS BEEN MY SECRET SPOT FOR **IDEAS, PROJECTS, AND FAVORITE READS** — UNTIL NOW. I’M REALLY EXCITED TO HAVE YOU ALONG FOR THE RIDE!
+
+NEXT UP ON MY RADAR? **GAME DEV** AND SHARPENING MY CPP SKILLS
+
+ALWAYS HAPPY TO TALK ON [TWITTER](https://twitter.com/aryamantwts) AND [LINKEDIN](https://www.linkedin.com/in/aryamangupta1).
+
+YOU CAN CHECK OUT MY WORK ON [GITHUB](https://www.github.com/Gupta-Aryaman)

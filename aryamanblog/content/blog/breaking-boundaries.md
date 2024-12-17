@@ -1,11 +1,14 @@
 +++
-title = "Breaking Boundaries"
+title = "BREAKING BOUNDARIES"
 date = "2023-12-17"
 
 description = "This article talks about GIL in python and issues caused by it. It also looks into efforts made to overcome GIL, and how can you make your python code perform the best inspite of these 'issues'."
 
 tags = ["breaking-boundaries","gil","no-gil","python","multithreading","aryaman-batcave",]
 newsletter_groups = ["blogs"]
+
+[cover]
+image = "images/breaking-boundaries/cover.avif"
 +++
 
 Python faces challenges in fully exploiting the growing capabilities of modern hardware. As hardware continues to advance with more CPU cores, faster processors, and abundant memory, Python's inherent design and execution model can often fall short in taking full advantage of these resources. Its single-threaded nature and certain architectural choices can result in suboptimal performance in scenarios where parallelism and hardware acceleration are vital. This limitation prompts developers to seek alternative solutions, such as integrating Python with external libraries, languages, or technologies, to overcome these hardware-related constraints.

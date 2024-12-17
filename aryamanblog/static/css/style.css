@@ -1,0 +1,10 @@
+figure.entry-cover {
+    margin: 0;
+    padding: 0;
+}
+
+figure.entry-cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+}

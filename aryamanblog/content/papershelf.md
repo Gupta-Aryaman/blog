@@ -3,12 +3,22 @@ title = "papershelf"
 menu = "main"
 +++
 
-# Papershelf
+# PAPERSHELF
 
-i’ve been diving into the world of research and white papers (thanks to Arpit Bhayani!). so far, I’ve checked out these awesome articles -
+I’VE BEEN DIVING INTO THE WORLD OF **RESEARCH** AND **WHITE PAPERS**. SO FAR, I’VE CHECKED OUT THESE AWESOME ARTICLES -
 
-* [Named Entity Recognition with Bidirectional LSTM-CNNs](https://arxiv.org/abs/1511.08308)
-* [Quantum supremacy using a programmable superconducting processor](https://www.nature.com/articles/s41586-019-1666-5)
-* [Quantum Computation by David P. DiVencenzo](https://arxiv.org/abs/quant-ph/0002077)
-* [WTF: The Who to Follow Service at Twitter](http://www.web.stanford.edu/~rezab/papers/wtf_overview.pdf)
-* [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+## AI/ML
+* [CHAIN-OF-THOUGHT PROMPTING](https://arxiv.org/pdf/2201.11903)
+* [MEMGPT: TOWARDS LLMS AS OPERATING SYSTEMS](https://arxiv.org/pdf/2310.08560)
+* [CAMELOT: TOWARDS LARGE LANGUAGE MODELS WITH TRAINING-FREE CONSOLIDATED ASSOCIATIVE MEMORY](https://arxiv.org/pdf/2402.13449)
+* [NAMED ENTITY RECOGNITION WITH BIDIRECTIONAL LSTM-CNNS](https://arxiv.org/abs/1511.08308)
+* [ATTENTION IS ALL YOU NEED](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+
+## QUANTUM COMPUTING
+* [PARTIAL LOOPHOLES FREE DEVICE-INDEPENDENT QUANTUM RANDOM NUMBER GENERATOR USING IBM'S QUANTUM COMPUTERS](https://iopscience.iop.org/article/10.1088/1402-4896/ad7c02)
+* [EXPERIMENTS WITH IBM QUANTUM DEVICES FOR RANDOM NUMBER GENERATION AND STRING MATCHING](https://ieeexplore.ieee.org/document/9306624)
+* [QUANTUM SUPREMACY USING A PROGRAMMABLE SUPERCONDUCTING PROCESSOR](https://www.nature.com/articles/s41586-019-1666-5)
+* [QUANTUM COMPUTATION BY DAVID P. DIVENCENZO](https://arxiv.org/abs/quant-ph/0002077)
+
+## SOFTWARE DEV
+* [WTF: THE WHO TO FOLLOW SERVICE AT TWITTER](http://www.web.stanford.edu/~rezab/papers/wtf_overview.pdf)

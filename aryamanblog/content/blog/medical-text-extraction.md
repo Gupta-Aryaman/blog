@@ -1,5 +1,5 @@
 +++
-title = "From Scribbles to Structured Data: Processing Handwritten Prescriptions with Spark NLP"
+title = "FROM SCRIBBLES TO STRUCTURED DATA: PROCESSING HANDWRITTEN PRESCRIPTIONS WITH SPARK NLP"
 date = "2024-11-05T21:10:01+05:30"
 
 description = "Using Spark NLP to Process Handwritten Medical Prescriptions and discuss various underlying concepts."
@@ -8,6 +8,9 @@ tags = ["Spark-NLP","Handwritten-Prescription-Processing","Medical-Text-Extracti
 
 newsletter_groups = ["blogs"]
 images = ["/images/medical-text-extraction/cover_img.webp"]
+
+[cover]
+image = "images/medical-text-extraction/cover.webp"
 +++
 
 <a name="introduction"></a>

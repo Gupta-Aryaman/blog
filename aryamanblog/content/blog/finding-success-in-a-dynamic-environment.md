@@ -1,9 +1,12 @@
 +++
-title = "Finding Success in a Dynamic Environment"
+title = "FINDING SUCCESS IN DYNAMIC ENVIRONMENT"
 date = "2023-07-25"
 
 tags = ["corporate","government-job","success","aryaman-batcave",]
 newsletter_groups = ["blogs"]
+
+[cover]
+image = "images/government-internship/cover.avif"
 +++
 
 ### ***Lessons learned from my internship at a government firm***

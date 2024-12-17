@@ -1,11 +1,14 @@
 +++
-title = "Decorators in Python"
+title = "DECORATORS IN PYTHON"
 date = "2023-05-31"
 
 description = "An all-you-need-to-know blog about decorators in python."
 
 tags = ["decorators","decorators-in-python","python","aryaman-batcave",]
 newsletter_groups = ["blogs"]
+
+[cover]
+image = "images/decorators-in-python/cover.avif"
 +++
 
 ## What on earth are decorators???

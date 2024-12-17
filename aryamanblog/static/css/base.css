@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'VCR OSD Mono';
+    src: url('/fonts/VCR_OSD_MONO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
+    color: #fff;
+    background: transparent
+		url("images/noise.png")
+		repeat 0 0;
+}
+  
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Ensure the video sits behind content */
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2) brightness(0.4) blur(2px);
+    pointer-events: none;    /* Disables any mouse interaction (click, drag, selection) on the video */
+    user-select: none; 
+}
+
+main, header, footer {
+    position: relative;
+    z-index: 1; /* Make sure content is on top of the video */
+    font-family: 'VCR OSD Mono', monospace;
+
+}
+
+#noise-bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 400%;
+    height: 400vh;
+    background: transparent
+        url("/images/noise.png")
+        repeat 0 0;
+    background-repeat: repeat;
+    animation: 1000ms infinite noise;
+    pointer-events: none;
+    opacity: 0.95;
+}
+
+@keyframes noise {
+	0%,
+	100% {
+		background-position: 0 0;
+	}
+	10% {
+		background-position: -5% -10%;
+	}
+	20% {
+		background-position: -15% 5%;
+	}
+	30% {
+		background-position: 7% -25%;
+	}
+	40% {
+		background-position: 20% 25%;
+	}
+	50% {
+		background-position: -25% 10%;
+	}
+	60% {
+		background-position: 15% 5%;
+	}
+	70% {
+		background-position: 0 15%;
+	}
+	80% {
+		background-position: 25% 35%;
+	}
+	90% {
+		background-position: -10% 10%;
+	}
+}
+
+  

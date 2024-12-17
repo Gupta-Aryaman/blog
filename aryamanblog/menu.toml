@@ -1,20 +1,15 @@
-[home]
+[HOME]
     Name = "_index"
     Title = "blog@aryaman"
     URL = "/"
     weight = 1
 
-[blog]
+[BLOG]
     Name = "Blog"
     URL = "/blog"
     weight = 2
 
-[papershelf]
+[PAPERSHELF]
     Name = "Papershelf"
     URL = "/papershelf"
     weight = 3
-
-[about]
-    Name = "About"
-    URL = "/about"
-    weight = 4

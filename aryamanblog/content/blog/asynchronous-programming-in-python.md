@@ -1,9 +1,12 @@
 +++
-title = "Asynchronous Programming in Python"
+title = "ASYNCHRONOUS PROGRAMMING IN PYTHON"
 date = "2023-09-21"
 
 tags = ["asynchronous","async","python","aryaman-batcave",]
 newsletter_groups = ["blogs"]
+
+[cover]
+image = "images/asynchronous-programming-in-python/cover.avif"
 +++
 
 ### Sync vs Async

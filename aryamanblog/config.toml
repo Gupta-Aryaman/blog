@@ -7,7 +7,7 @@ baseURL = "https://aryaman.space/"
 theme = 'hugo-bearblog'
 
 # Basic metadata configuration for your blog.
-title = "aryaman's batcave"
+title = "ARYAMAN.SPACE"
 author = "Aryaman Gupta"
 copyright = "Copyright © 2024, Aryaman Gupta."
 languageCode = "en-US"
@@ -40,4 +40,5 @@ title = ""
 content = "Want more content like thi? Join my newsletter down below to receive updates to your mailbox"
 mailchimpFormUrl = "https://space.us14.list-manage.com/subscribe/post?u=9826b167b24adbcba9091190f&amp;id=f90f480251&amp;f_id=00eb8fe1f0"
 mailchimpFormKey = "b_9826b167b24adbcba9091190f_f90f480251"
+
 

@@ -1,9 +1,12 @@
 +++
-title = "Demystifying Replication and Sharding in MongoDB"
+title = "DEMYSTIFYING REPLICATION AND SHARDING IN MONGODB"
 date = "2024-04-14"
 
 tags = ["replication","sharding","mongoDB","distributed-systems","aryaman-batcave",]
 newsletter_groups = ["blogs"]
+
+[cover]
+image = "images/replication-and-sharding-in-mongo/cover.avif"
 +++
 
 Making a MongoDB cluster "Production Ready" by performing database Replication and Sharding (horizontal fragmentation)

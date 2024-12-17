@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+<link rel="stylesheet" href="{{ "css/base.css" | relURL }}">
 
 <head>
   <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
@@ -24,20 +25,30 @@
 </head>
 
 <body>
+  
+
   <header>
     {{- partial "header.html" . -}}
   </header>
+  
   <main>
     {{- block "main" . }}{{- end }}
   </main>
+  
   <footer>
     {{- partial "footer.html" . -}}
   </footer>
+
+  <div id="noise-bg"></div>
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="background-video" disablePictureInPicture>
+    <source src="{{ "videos/applevideo.mp4" | absURL }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
   <!-- A partial to be overwritten by the user.
   Simply place a custom_body.html into
   your local /layouts/partials-directory -->
   {{- partial "custom_body.html" . -}}
 </body>
-
 </html>
