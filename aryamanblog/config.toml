@@ -7,7 +7,7 @@ baseURL = "https://aryaman.space/"
 theme = 'hugo-bearblog'
 
 # Basic metadata configuration for your blog.
-title = "ARYAMAN.SPACE"
+title = "aryaman.space"
 author = "Aryaman Gupta"
 copyright = "Copyright © 2024, Aryaman Gupta."
 languageCode = "en-US"
@@ -28,9 +28,9 @@ ignoreErrors = ["error-disable-taxonomy"]
   favicon = "images/favicon.png"
   
   # image that shows up when the link is shared
-  images = ["images/home.jpg"]
+  images = ["images/about.jpg"]
 
-  title = "aryaman's batcave"
+  title = "aryaman's space"
 
   # hideMadeWithLine = true
 

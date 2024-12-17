@@ -1,6 +1,9 @@
 [submodule "aryamanblog/themes/hugo-bearblog"]
 	path = aryamanblog/themes/hugo-bearblog
 	url = https://github.com/janraasch/hugo-bearblog.git
+
+
+
 [submodule "aryamanblog/public"]
 	path = aryamanblog/public
-	url = git@github.com:Gupta-Aryaman/aryaman.github.io.git
+	url = https://github.com/Gupta-Aryaman/gupta-aryaman.github.io
