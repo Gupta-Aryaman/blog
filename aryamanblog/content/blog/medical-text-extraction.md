@@ -255,11 +255,11 @@ The `train_model` method reads the CoNLL dataset, applies BERT embeddings, and t
             logger.error(f"Error during training: {e}")
 ```
 
-- **`train_model` method**: Trains the NER model.
-- **`CoNLL().readDataset`**: Reads training data in **CoNLL** format.
-- **`self.bert_embeddings.transform`**: Applies BERT embeddings to the training data.
-- **`self.ner_tagger.fit`**: Trains the NER model.
-- **`self.ner_model.write().overwrite().save`**: Saves the trained model.
+- `train_model` method: Trains the NER model.
+- `CoNLL().readDataset`: Reads training data in **CoNLL** format.
+- `self.bert_embeddings.transform`: Applies BERT embeddings to the training data.
+- `self.ner_tagger.fit`: Trains the NER model.
+- `self.ner_model.write().overwrite().save`: Saves the trained model.
 
 <!-- TOC --><a name="what-is-conll-format"></a>
 ### What is CoNLL format?
@@ -334,8 +334,8 @@ def load_model(self, model_path):
         logger.error(f"Error loading model: {e}")
 ```
 
-- **`load_model` method**: Loads a pre-trained NER model.
-- **`NerDLModel.load`**: Loads the model from the specified path.
+- `load_model` method: Loads a pre-trained NER model.
+- `NerDLModel.load`: Loads the model from the specified path.
 
 <!-- TOC --><a name="5-making-predictions"></a>
 ## 5. Making Predictions
@@ -370,12 +370,12 @@ def predict(self, text):
 ```
 
 - **Pipeline Stages**: The pipeline consists of several stages:
-  - **`document_assembler`**: Converts raw text into a **structured document format** (read about it below).
-  - **`sentence_detector`**: Detects sentences within the document.
-  - **`tokenizer`**: Tokenizes sentences into individual words.
-  - **`bert_embeddings`**: Applies BERT embeddings to the tokens.
-  - **`loaded_ner_model`**: Uses the pre-trained NER model to identify named entities.
-  - **`converter`**: Converts the NER results into a more readable format.
+  - `document_assembler`: Converts raw text into a **structured document format** (read about it below).
+  - `sentence_detector`: Detects sentences within the document.
+  - `tokenizer`: Tokenizes sentences into individual words.
+  - `bert_embeddings`: Applies BERT embeddings to the tokens.
+  - `loaded_ner_model`: Uses the pre-trained NER model to identify named entities.
+  - `converter`: Converts the NER results into a more readable format.
 
 - #### Pipeline Example
     - If the input text is `"John Doe works at OpenAI."`, the pipeline stages will process it as follows:
@@ -387,11 +387,11 @@ def predict(self, text):
         5. *Loaded NER Model*: Identifies `"John Doe"` as a person and `"OpenAI"` as an organization.
         6. *Converter*: Converts the NER results into a readable format.
 
-- **`self.spark.createDataFrame`**: Creates a Spark DataFrame from the input text.
-- **`self.prediction_pipeline.fit`**: Fits the pipeline (required for some Spark operations).
-- **`prediction_model.transform`**: Transforms the input text using the pipeline.
-- **`preds.collect`**: Collects the prediction results.
-- **`self.format_output`**: Formats the prediction results.
+- `self.spark.createDataFrame`: Creates a Spark DataFrame from the input text.
+- `self.prediction_pipeline.fit`: Fits the pipeline (required for some Spark operations).
+- `prediction_model.transform`: Transforms the input text using the pipeline.
+- `preds.collect`: Collects the prediction results.
+- `self.format_output`: Formats the prediction results.
 
 <!-- TOC --><a name="document"></a>
 ## What's a Document?
@@ -455,10 +455,10 @@ The output will be a DataFrame with a "document" column that contains the struct
 <!-- TOC --><a name="explanation"></a>
 ### Explanation
 
-- **`document`**: The column name for the structured text.
-- **`0, 20`**: The start and end positions of the text.
-- **`This is a sample text.`**: The actual text content.
-- **`[sentence -> 0]`**: Metadata indicating that this is the first sentence.
+- `document`: The column name for the structured text.
+- `0, 20`: The start and end positions of the text.
+- `This is a sample text.`: The actual text content.
+- `[sentence -> 0]`: Metadata indicating that this is the first sentence.
 
 <!-- TOC --><a name="why-is-this-important"></a>
 ### Why is this Important?

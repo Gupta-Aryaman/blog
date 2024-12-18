@@ -11,7 +11,7 @@ image = "images/replication-and-sharding-in-mongo/cover.avif"
 
 Making a MongoDB cluster "Production Ready" by performing database Replication and Sharding (horizontal fragmentation)
 
-# **What is Replication?**
+# What is Replication?
 
 Replication is the method of duplication of data across multiple servers. For example, we have an application and it reads and writes data to a database and says this server A has a name and balance which will be copied/replicate to two other servers in two different locations.
 
@@ -28,7 +28,7 @@ By doing this, will get redundancy and increases data availability with multiple
 3. Read Scaling (Extra copies to read from)
     
 
-# **What is Sharding?**
+# What is Sharding?
 
 Sharding is a method for allocating data across multiple machines. MongoDB used sharding to help deployment with very big data sets and large throughput the operation. By sharding, you combine more devices to carry data extension and the needs of read and write operations.
 
@@ -54,7 +54,7 @@ A sharded cluster consists of 3 things -
 3. The working set sizes are larger than the system’s RAM to stress the I/O capacity of the disk drive.
     
 
-# **Performing Replication in MongoDB**
+# Performing Replication in MongoDB
 
 1. Download MongoDB Community Server from here - [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
     
@@ -130,7 +130,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
 
 ![](/images/replication-and-sharding-in-mongo/image11.png)
 
-# **Performing Sharding in MongoDB**
+# Performing Sharding in MongoDB
 
 Here we can see the architecture of our sharded cluster. It consists of -
 

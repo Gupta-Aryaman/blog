@@ -44,6 +44,8 @@
         border-radius: 0 5px 5px 0;
         width: 30%; /* Adjusted to take 30% of the available space */
         box-sizing: border-box; /* Ensures padding is included in the width calculation */
+        text-transform: lowercase; /* Change text to lowercase */
+
     }
 
     .newsletter-button:hover {
@@ -55,7 +57,7 @@
     }
 
     /* Adjust the button size on smaller screens */
-    @media (max-width: 655px) {
+    @media (max-width: 711px) {
         .newsletter-input {
             width: 60%;
             font-size: 12px;
@@ -68,6 +70,7 @@
         .newsletter-button {
             width: 40%;
             font-size: 12px; /* Adjust font size for smaller screens */
+            text-transform: lowercase; /* Change text to lowercase */
         }
     }
 </style>

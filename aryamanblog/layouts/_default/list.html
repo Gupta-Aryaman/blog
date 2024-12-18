@@ -12,7 +12,7 @@
       <span>
         <i>
           <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-            {{ .Date.Format (default "02 JAN, 2006" .Site.Params.dateFormat) }}
+            {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
           </time>
         </i>
       </span>
@@ -28,9 +28,9 @@
   {{else}}
     <small>
       <div>
-        <!-- {{ range .Site.Taxonomies.tags }}
+        {{ range .Site.Taxonomies.tags }}
         <a href="{{ .Page.Permalink }}">#{{ .Page.Title }}</a>&nbsp;
-        {{ end }} -->
+        {{ end }}
       </div>
     </small>
     {{ end }}
