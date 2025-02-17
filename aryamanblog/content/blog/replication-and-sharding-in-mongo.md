@@ -1,17 +1,17 @@
-+++
-title = "DEMYSTIFYING REPLICATION AND SHARDING IN MONGODB"
-date = "2024-04-14"
-
-tags = ["replication","sharding","mongoDB","distributed-systems","aryaman-batcave",]
-newsletter_groups = ["blogs"]
-
-[cover]
-image = "images/replication-and-sharding-in-mongo/cover.avif"
-+++
+---
+title: "Demystifying Replication and Sharding in MongoDB"
+date: "2024-04-14"
+# description: "Making MongoDB clusters production-ready through database replication and sharding"
+tags: ["replication", "sharding", "mongodb", "distributed-systems", "aryaman-batcave"]
+newsletter_groups: ["blogs"]
+showShareButtons: true
+showToc: true
+tocOpen: true
+---
 
 Making a MongoDB cluster "Production Ready" by performing database Replication and Sharding (horizontal fragmentation)
 
-# What is Replication?
+## What is Replication?
 
 Replication is the method of duplication of data across multiple servers. For example, we have an application and it reads and writes data to a database and says this server A has a name and balance which will be copied/replicate to two other servers in two different locations.
 
@@ -28,7 +28,7 @@ By doing this, will get redundancy and increases data availability with multiple
 3. Read Scaling (Extra copies to read from)
     
 
-# What is Sharding?
+## What is Sharding?
 
 Sharding is a method for allocating data across multiple machines. MongoDB used sharding to help deployment with very big data sets and large throughput the operation. By sharding, you combine more devices to carry data extension and the needs of read and write operations.
 
@@ -36,7 +36,7 @@ Sharding is a method for allocating data across multiple machines. MongoDB used 
 
 A sharded cluster consists of 3 things -
 
-1. **Shards** - A replica set that contains a sunset of the cluster’s data
+1. **Shards** - A replica set that contains a sunset of the cluster's data
     
 2. **Mongos** - For a sharded cluster, mongos provides an interface between client applications and sharded cluster
     
@@ -51,71 +51,10 @@ A sharded cluster consists of 3 things -
     
 2. For example, High query flows can drain the CPU limit of the server.
     
-3. The working set sizes are larger than the system’s RAM to stress the I/O capacity of the disk drive.
+3. The working set sizes are larger than the system's RAM to stress the I/O capacity of the disk drive.
     
 
-# Performing Replication in MongoDB
-
-1. Download MongoDB Community Server from here - [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
-    
-2. Go to \\mongo\\data\\ folder
-    
-3. Create 3 folders named db1, db2, db3. Each folder represents a replica of our **“ReplicaSet”**
-    
-    ![](/images/replication-and-sharding-in-mongo/image4.png)
-    
-4. Open 3 terminals
-    
-5. Run the first replica on port **27018** and name the replSet **“rs1”**
-    
-    ```powershell
-    mongod --port 27018 --dbpath D:\Mongo_server\data\db1 --replSet rs1
-    ```
-    
-6. Do the same in other 2 terminals
-    
-    ```powershell
-    mongod --port 27019 --dbpath D:\Mongo_server\data\db2 --replSet rs1
-    mongod --port 27020 --dbpath D:\Mongo_server\data\db3 --replSet rs1
-    ```
-    
-    ![](/images/replication-and-sharding-in-mongo/image5.png)
-    
-7. Open another terminal and connect **Mongo Shell** to the server running on port “27018” -
-    
-    ```powershell
-    mongo --port 27018
-    ```
-    
-8. Type the following command to initialize a replset **“rs1”** and add all 3 servers into it as **replicas**\-
-    
-    ```powershell
-    rs.initiate({
-        _id: “rs1”,
-        members: [
-          {_id: 0, host: “localhost:27018”},
-          {_id: 1, host: “localhost:27019”},
-          {_id: 2, host: “localhost:27020”},
-        ]
-    })
-    ```
-    
-9. The replica with **id:0** becomes the **Primary Replica (the server running on port 27018, we are connected to it).** You will be able to see *primary* like so -
-    
-    ![](/images/replication-and-sharding-in-mongo/image6.png)
-    
-10. Now lets connect to the replica server running on port “27019”. You can see that **\[secondary\]** is written here, indicating that it is a **“Secondary Replica” -**
-    
-    ![](/images/replication-and-sharding-in-mongo/image7.png)
-    
-11. Type the command `rs.status()` to get status of the replication set.
-    
-    ![](/images/replication-and-sharding-in-mongo/image8.png)
-    
-    Here we can see 3 replicas in the current replSet “rs1”, having id 0, 1, 3. The **id:0** member is **‘Primary’** repl, whereas id=1 and id=3 are ‘Secondary’ repls.
-    
-
-### **Data Replication in action**
+## Data Replication in action
 
 1. Insert data into primary repl
     
@@ -130,20 +69,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
 
 ![](/images/replication-and-sharding-in-mongo/image11.png)
 
-# Performing Sharding in MongoDB
-
-Here we can see the architecture of our sharded cluster. It consists of -
-
-![](/images/replication-and-sharding-in-mongo/image12.png)
-
-1. 3 shards, namely ‘a’, ‘b’, ‘c’, where Primary Replicas would be running on port *26000, 26100, 26200* respectively (each shard has in total of 3 replicas)
-    
-2. Config server, having 3 replicas in the ‘cfg’ replSet, where the Primary Config Server would run on port *26050*
-    
-3. Finally, the mongos server which is responsible to provide an interface to the client for interaction with the cluster. It would run on port *26061*.
-    
-
-### Steps to create the above sharded cluster
+## Steps to create the above sharded cluster
 
 1. Go to \\mongo\\data\\ folder
     
@@ -167,7 +93,7 @@ Here we can see the architecture of our sharded cluster. It consists of -
      mongod --configsvr --dbpath cfg2 --port 26052 --logpath log.cfg2 --replSet cfg
     ```
     
-    Here,***\--configsvr*** represents that we are creating a config server, ***–dbpath*** represents the folder of that config replica, ***–port*** represents the port number on which I want the server to run, ***–logpath*** represents the log file of the particular server, and ***–replSet*** represents the name of the Replication Set.
+    Here,***--configsvr*** represents that we are creating a config server, ***–dbpath*** represents the folder of that config replica, ***–port*** represents the port number on which I want the server to run, ***–logpath*** represents the log file of the particular server, and ***–replSet*** represents the name of the Replication Set.
     
 5. Attaching mongo shell to the config server running on port 26050 (as we want to make this server as the Primary Replica of the replSet)
     
@@ -179,8 +105,8 @@ Here we can see the architecture of our sharded cluster. It consists of -
     
     ```powershell
     rs.initiate()
-    rs.add(“localhost:26051”)  #Adding the other config server to the replSet
-    rs.add(“localhost:26052”)
+    rs.add("localhost:26051")  #Adding the other config server to the replSet
+    rs.add("localhost:26052")
     ```
     
     ![](/images/replication-and-sharding-in-mongo/image14.png)
@@ -191,7 +117,7 @@ Here we can see the architecture of our sharded cluster. It consists of -
     
     ![](/images/replication-and-sharding-in-mongo/image16.png)
     
-8. Now launch the servers for the shard ‘a’ having replicas a0, a1, a2 in it’s replSet (each server should be launched in different terminals) -
+8. Now launch the servers for the shard 'a' having replicas a0, a1, a2 in it's replSet (each server should be launched in different terminals) -
     
     ```powershell
     mongod --shardsvr --replSet a --dbpath a0 --port 26000 --logpath log.a0
@@ -207,7 +133,7 @@ Here we can see the architecture of our sharded cluster. It consists of -
     
     ![](/images/replication-and-sharding-in-mongo/image17.png)
     
-    Do similar to create shards ‘b’ and ‘c’ -
+    Do similar to create shards 'b' and 'c' -
     
     ```powershell
     mongod --shardsvr --replSet b --dbpath b0 --port 26100 --logpath log.b0
@@ -221,11 +147,11 @@ Here we can see the architecture of our sharded cluster. It consists of -
     mongod --shardsvr --replSet c --dbpath c2 --port 26202 --logpath log.c2
     ```
     
-    We can see the servers are actively “LISTENING” on all the ports -
+    We can see the servers are actively "LISTENING" on all the ports -
     
     ![](/images/replication-and-sharding-in-mongo/image18.png)
     
-9. Now open a new terminal and connect a mongo shell to server running on port 26000, initiate a replSet and add replicas a1 and a2 to it (Inter-connecting the replSet ‘a’) -
+9. Now open a new terminal and connect a mongo shell to server running on port 26000, initiate a replSet and add replicas a1 and a2 to it (Inter-connecting the replSet 'a') -
     
     ```powershell
     mongosh --port 26000
@@ -233,26 +159,26 @@ Here we can see the architecture of our sharded cluster. It consists of -
     
     ```powershell
     rs.initiate()
-    rs.add(“localhost:26001”)
-    rs.add(“localhost:26002”)
+    rs.add("localhost:26001")
+    rs.add("localhost:26002")
     ```
     
     ![](/images/replication-and-sharding-in-mongo/image19.png)
     
-10. Do the same for replSet ‘b’ and ‘c’ -
+10. Do the same for replSet 'b' and 'c' -
     
     ```powershell
     mongosh --port 26100
     rs.initiate()
-    rs.add(“localhost:26101”)
-    rs.add(“localhost:26102”)
+    rs.add("localhost:26101")
+    rs.add("localhost:26102")
     ```
     
     ```powershell
     mongosh --port 26200
     rs.initiate()
-    rs.add(“localhost:26201”)
-    rs.add(“localhost:26202”)
+    rs.add("localhost:26201")
+    rs.add("localhost:26202")
     ```
     
 11. The next step is to start the mongos instance (in a new terminal) which would be the interaction point of the client with the sharded environment -
@@ -269,12 +195,12 @@ Here we can see the architecture of our sharded cluster. It consists of -
     
     ```powershell
     mongosh --port 26061
-    sh.addShard(“a/localhost:26000”)
-    sh.addShard(“b/localhost:26100”)
-    sh.addShard(“c/localhost:26200”)
+    sh.addShard("a/*[*localhost:26000*](http://localhost:26000)*")
+    sh.addShard("b/localhost:26100")
+    sh.addShard("c/localhost:26200")
     ```
     
-    In *sh.addShard("a/*[*localhost:26000*](http://localhost:26000)*")*,  ‘a’ represents replSet, and [localhost:26000](http://localhost:26000) represents the Primary Replica of ‘a’ replSet.
+    In *sh.addShard("a/*[*localhost:26000*](http://localhost:26000)*")*, 'a' represents replSet, and [localhost:26000](http://localhost:26000) represents the Primary Replica of 'a' replSet.
     
     ![](/images/replication-and-sharding-in-mongo/image21.png)
     
@@ -302,11 +228,11 @@ Here we can see the architecture of our sharded cluster. It consists of -
     
     ![](/images/replication-and-sharding-in-mongo/image25.png)
     
-    Now doing `sh.status()`, we can see “peaksDB” in “databases” field -
+    Now doing `sh.status()`, we can see "peaksDB" in "databases" field -
     
     ![](/images/replication-and-sharding-in-mongo/image26.png)
     
-15. We can see 1 sample document inside our ‘peaksDB.peaks’ collection. Lets shard the collection on ‘name’ field -
+15. We can see 1 sample document inside our 'peaksDB.peaks' collection. Lets shard the collection on 'name' field -
     
     1. Create an index of the proposed shard key -
         
@@ -322,7 +248,7 @@ Here we can see the architecture of our sharded cluster. It consists of -
         
         ![](/images/replication-and-sharding-in-mongo/image27.png)
         
-16. Now doing `sh.status()` we can see that for our collection “peaksDB.peaks” has a shardKey of ‘name’ and is present on shard ‘c’ -
+16. Now doing `sh.status()` we can see that for our collection "peaksDB.peaks" has a shardKey of 'name' and is present on shard 'c' -
     
     ![](/images/replication-and-sharding-in-mongo/image28.png)
     

@@ -1,6 +1,9 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
-date: {{ .Date }}
-draft: true
+showReadingTime: false
+showWordCount: false
+showAuthor: false
+hideMeta: true
+hideBreadcrumbs: true
 ---
 

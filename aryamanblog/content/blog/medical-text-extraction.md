@@ -1,17 +1,12 @@
-+++
-title = "FROM SCRIBBLES TO STRUCTURED DATA: PROCESSING HANDWRITTEN PRESCRIPTIONS WITH SPARK NLP"
-date = "2024-11-05T21:10:01+05:30"
-
-description = "Using Spark NLP to Process Handwritten Medical Prescriptions and discuss various underlying concepts."
-
-tags = ["Spark-NLP","Handwritten-Prescription-Processing","Medical-Text-Extraction","NER","LSTM","Document","Char-CNN","BERT","BERT-Embeddings","CoNLL"]
-
-newsletter_groups = ["blogs"]
-images = ["/images/medical-text-extraction/cover_img.webp"]
-
-[cover]
-image = "images/medical-text-extraction/cover.webp"
-+++
+---
+title: "From Scribbles to Structured Data: Processing Handwritten Prescriptions with Spark NLP"
+date: "2024-11-05T21:10:01+05:30"
+# description: "Using Spark NLP to Process Handwritten Medical Prescriptions and discuss various underlying concepts."
+tags: ["spark-nlp", "handwritten-prescription-processing", "medical-text-extraction", "ner", "lstm", "document", "char-cnn", "bert", "bert-embeddings", "conll"]
+newsletter_groups: ["blogs"]
+images: ["/images/medical-text-extraction/cover_img.webp"]
+showToc: true
+---
 
 <a name="introduction"></a>
 ## Introduction
@@ -22,33 +17,6 @@ Automating this process requires a robust combination of *Optical Character Reco
 In this article, we delve into a *Spark* NLP-based pipeline to convert handwritten prescriptions into structured, machine-readable text. Leveraging *BERT embeddings* for contextual understanding and a custom *Named Entity Recognition*(NER) model, this approach promises to streamline information extraction in medical workflows. From OCR text extraction to entity recognition and model training, each step is tailored to maximize accuracy for complex medical terminology.
 
 [Github Link](https://github.com/Gupta-Aryaman/scanplus)
-
-## Table of Contents
-- [1. Extract Handwritten text using OCR](#1-extract-handwritten-text-using-ocr)
-- [2. Initializing the NER Model](#2-initializing-the-ner-model)
-   * [WordEmbeddings model](#wordembeddings-model)
-      + [Why I chose BERT Embeddings over others?](#why-i-chose-bert-embeddings-over-others)
-   * [NerDLApproach](#nerdlapproach)
-      + [Why Char CNNs - BiLSTM - CRF?](#why-char-cnns-bilstm-crf)
-      + [Example](#example)
-- [3. Training the Model](#3-training-the-model)
-   * [What is CoNLL format?](#what-is-conll-format)
-      + [CoNLL Format Structure](#conll-format-structure)
-      + [Why CoNLL Format Is Used in NER](#why-conll-format-is-used-in-ner)
-   * [Where to get Clinical NER Datasets?](#where-to-get-clinical-ner-datasets)
-- [4. Loading the Model](#4-loading-the-model)
-- [5. Making Predictions](#5-making-predictions)
-- [What's a Document?](#document)
-   * [Document in Spark NLP](#document-in-spark-nlp)
-   * [DocumentAssembler](#documentassembler)
-   * [Example](#example-1)
-   * [Output](#output)
-   * [Explanation](#explanation)
-   * [Why is this Important?](#why-is-this-important)
-- [Summary](#summary)
-- [Actual Output](#actual-output)
-- [Conclusion](#conclusion)
-- [References](#references)
 
 <!-- TOC --><a name="1-extract-handwritten-text-using-ocr"></a>
 ## 1. Extract Handwritten text using OCR

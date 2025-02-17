@@ -1,0 +1,48 @@
+:root {
+    --fontSize: 16px;
+    --lineHeight: 1.6;
+}
+
+.post-content {
+    font-size: 16px;
+}
+
+.post-title {
+    font-size: 24px;
+}
+
+.entry-header h2 {
+    font-size: 20px;
+}
+
+.entry-content {
+    font-size: 16px;
+}
+
+.social-icons a {
+    font-size: 16px;
+}
+
+.terms-tags a {
+    font-size: 14px;
+}
+
+.post-meta {
+    font-size: 14px;
+}
+
+.toc {
+    font-size: 14px;
+}
+
+.menu a {
+    font-size: 16px;
+}
+
+.home-info .entry-content {
+    font-size: 16px;
+}
+
+.post-description {
+    font-size: 14px;
+} 

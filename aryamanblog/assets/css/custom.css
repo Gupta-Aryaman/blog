@@ -1,0 +1,67 @@
+.toc {
+    background: var(--entry);
+    border-radius: 6px;
+    margin: 20px 0;
+    padding: 16px;
+}
+
+.toc-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.toc-content {
+    font-size: 0.9rem;
+}
+
+.toc-content ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.toc-content ul li {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.toc-content ul li a {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.toc-content ul li a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+/* Indent nested levels */
+.toc-content ul ul {
+    margin-top: 5px;
+}
+
+/* Share buttons styling */
+.share-buttons {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.share-buttons a {
+    margin-right: 8px;
+    display: inline-block;
+}
+
+.share-buttons svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.share-buttons .share-btn {
+    color: var(--secondary);
+}
+
+.share-buttons .share-btn:hover {
+    color: var(--primary);
+} 

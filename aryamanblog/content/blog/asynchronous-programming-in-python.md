@@ -1,17 +1,15 @@
-+++
-title = "ASYNCHRONOUS PROGRAMMING IN PYTHON"
-date = "2023-09-21"
-
-tags = ["asynchronous","async","python","aryaman-batcave",]
-newsletter_groups = ["blogs"]
-
-[cover]
-image = "images/asynchronous-programming-in-python/cover.avif"
-+++
+---
+title: "Asynchronous Programming in Python"
+date: "2023-09-21"
+tags: ["asynchronous", "async", "python", "aryaman-batcave"]
+newsletter_groups: ["blogs"]
+showShareButtons: true
+showToc: true
+---
 
 ### Sync vs Async
 
-***What is a synchronous programming?***
+***What is synchronous programming?***
 
 [*Synchronous programming*](https://deepsource.com/glossary/synchronous-programming) is a programming paradigm in which operations are executed sequentially, one after the other. In this model, each operation waits for the previous one to complete before moving on to the next step. This sequential execution can lead to 'blocking' operations, where certain tasks may take a significant amount of time to finish. These blocking operations can pause the entire program's execution, forcing it to wait until the time-consuming task is done before it can proceed. Let's understand it with an example:
 
@@ -20,7 +18,7 @@ from time import sleep
 
 def foo():
     print("in foo")
-    sleep(10) #mimicing some blocking operation
+    sleep(10)  # mimicking some blocking operation
     print("end foo")
 
 foo()
@@ -39,24 +37,24 @@ This situation isn't ideal because these blocking operations could encompass a w
 
 In computer programming, [*asynchrony*](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)) encompasses events that occur independently of the primary program flow and methods for managing these events. In essence, asynchronization implies that you can proceed with executing other sections of code without the need to wait for a particular task to finish.
 
-The first thing when creating an asynchronous program creating a [*coroutine*](https://docs.python.org/3/library/asyncio-task.html#coroutines).
+The first step in creating an asynchronous program is creating a [*coroutine*](https://docs.python.org/3/library/asyncio-task.html#coroutines).
 
 ### What's a coroutine in Python?
 
-A [*coroutine*](https://docs.python.org/3/library/asyncio-task.html#coroutines) is simply a wrapped version of a function that allows it to run asynchronously. I would recommend using Python 3.7+ to follow the following guide.
+A [*coroutine*](https://docs.python.org/3/library/asyncio-task.html#coroutines) is simply a wrapped version of a function that allows it to run asynchronously. I recommend using Python 3.7+ to follow this guide.
 
 ```python
-import asyncio #importing async library
+import asyncio  # importing async library
 
-async def main(): #defining a coroutine object
+async def main():  # defining a coroutine object
     print("hello world")
 
-print(main()) #Output - <coroutine object main at 0x7f013de5fd80>
+print(main())  # Output - <coroutine object main at 0x7f013de5fd80>
 ```
 
-To create a coroutine object you just need to create a function normally and add an `async` keyword in front of it. What it essentially does is create a wrapper around this function.
+To create a coroutine object, you just need to create a function normally and add an `async` keyword in front of it. What it essentially does is create a wrapper around this function.
 
-So when we call this function it creates a coroutine object `<coroutine object main at 0x7f013de5fd80>` This coroutine object works just like a function and can be executed. To execute a coroutine you need to *await* it.
+So when we call this function, it creates a coroutine object `<coroutine object main at 0x7f013de5fd80>`. This coroutine object works just like a function and can be executed. To execute a coroutine, you need to *await* it.
 
 Wait, WHAT?! <mark>What's </mark> [<mark>awaiting</mark>](https://docs.python.org/3/library/asyncio-task.html#awaitables)<mark>?</mark> Let me show you the output of the above snippet of code.
 
@@ -66,7 +64,7 @@ As we have a coroutine object now, it does not work like a regular Python functi
 
 ### Async Event-Loop
 
-Ok. No worries. Let me just await the `main()` function call and then it should work, right?
+Ok. No worries. Let me just await the `main()` function call, and then it should work, right?
 
 ```python
 import asyncio
@@ -81,7 +79,7 @@ await main()
 
 Oh, no! It gave an error. So what's the issue? The reason it's not running our code because we haven't created an [*event-loop.*](https://docs.python.org/3/library/asyncio-eventloop.html)
 
-Whenever we create an asynchronous program in Python we need to start/create an *event loop*. An *event loop* typically refers to the core mechanism used for managing and handling asynchronous or non-blocking operations. It's a fundamental component of many asynchronous programming frameworks, such as asyncio which we are using in our study. It is responsible for this simple async syntax, we are seeing here, in the backend. We must start an **event loop** in whatever thread we are running this asynchronous program in.
+Whenever we create an asynchronous program in Python, we need to start/create an *event loop*. An *event loop* typically refers to the core mechanism used for managing and handling asynchronous or non-blocking operations. It's a fundamental component of many asynchronous programming frameworks, such as asyncio, which we are using in our study. It is responsible for this simple async syntax we are seeing here in the backend. We must start an **event loop** in whatever thread we are running this asynchronous program in.
 
 ```python
 import asyncio
@@ -92,7 +90,7 @@ async def main():
 asyncio.run(main())
 ```
 
-Hence, to start an event loop we use `asyncio.run()` and pass it a coroutine object which acts as an *entry point* to the event loop.
+Hence, to start an event loop, we use `asyncio.run()` and pass it a coroutine object, which acts as an *entry point* to the event loop.
 
 ### Await keyword
 
@@ -141,7 +139,7 @@ async def foo(text):
 asyncio.run(main())
 ```
 
-If we see the code above, we are creating a task using `create_task()` function and passing a coroutine object to it. This essentially tells the program to run the task as soon as there is some kind of waiting in the main line of execution.
+If we see the code above, we are creating a task using the `create_task()` function and passing a coroutine object to it. This essentially tells the program to run the task as soon as there is some kind of waiting in the main line of execution.
 
 ![](/images/asynchronous-programming-in-python/image6.png)
 
@@ -183,21 +181,24 @@ import asyncio
 
 async def fetch_data():
     print('Start fetching')
-    await asyncio.sleep(2)  #mimcing fetching data via some request
+    await asyncio.sleep(2)  # mimicking fetching data via some request
     print('Done fetching')
     return {'data': 1}
 
 async def print_numbers():
     for i in range(10):
         print(i)
-        await asyncio.sleep(0.25) #mimcing waiting for a response
+        await asyncio.sleep(0.25)  # mimicking waiting for a response
 
 async def main():
     task1 = asyncio.create_task(fetch_data())
     task2 = asyncio.create_task(print_numbers())
     
-    # need to get the {'data': 1} value from fetch_data
-    print(task1)   
+    # awaiting task1 to be completed and then using 
+    # the value it returned
+    value = await task1
+    print(value)
+    await task2
 
 asyncio.run(main())
 ```
@@ -215,14 +216,14 @@ import asyncio
 
 async def fetch_data():
     print('Start fetching')
-    await asyncio.sleep(2)  #mimcing fetching data via some request
+    await asyncio.sleep(2)  # mimicking fetching data via some request
     print('Done fetching')
     return {'data': 1}
 
 async def print_numbers():
     for i in range(10):
         print(i)
-        await asyncio.sleep(0.25) #mimcing waiting for a response
+        await asyncio.sleep(0.25)  # mimicking waiting for a response
 
 async def main():
     task1 = asyncio.create_task(fetch_data())
@@ -243,7 +244,7 @@ As we can see in the output, because we awaited for task1 to finish, we can get 
 
 ### Conclusion
 
-When we write `async def func_name()`, what we are doing is wrapping another function with an asynchronous version of it. That version is the [*Coroutine*](https://docs.python.org/3/library/asyncio-task.html#coroutines). To run the *coroutine* you must *await* it in some way or add it to the event loop. You can add it to the event loop by creating a task ( `asyncio.create_task(func_name())` ). This allows you to start multiple *coroutines* concurrently. Finally, to start your asynchronous program you must create an [*event loop*](https://docs.python.org/3/library/asyncio-eventloop.html) which can be done by [`asyncio. run(driver_func())`](http://asyncio.run) and passing an entry point coroutine which is generally the driver function of your program (for example the main function).
+When we write `async def func_name()`, what we are doing is wrapping another function with an asynchronous version of it. That version is the [*Coroutine*](https://docs.python.org/3/library/asyncio-task.html#coroutines). To run the *coroutine*, you must *await* it in some way or add it to the event loop. You can add it to the event loop by creating a task (`asyncio.create_task(func_name())`). This allows you to start multiple *coroutines* concurrently. Finally, to start your asynchronous program, you must create an [*event loop*](https://docs.python.org/3/library/asyncio-eventloop.html), which can be done by [`asyncio.run(driver_func())`](http://asyncio.run) and passing an entry point coroutine, which is generally the driver function of your program (for example, the main function).
 
 **<mark>One thing to note is that at a time only a single execution is happening, and it is not to be confused with parallel processing or threading.</mark>**
 

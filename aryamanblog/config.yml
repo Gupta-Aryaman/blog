@@ -1,0 +1,106 @@
+baseURL: "https://aryaman.space/"
+title: "aryaman.space"
+paginate: 5
+theme: ["PaperMod"]
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+# Image Processing
+imaging:
+  anchor: Smart
+  quality: 75
+  resampleFilter: Lanczos
+
+params:
+  env: production
+  title: "aryaman's space"
+  description: "a corner where ideas, projects, and favorite reads come together"
+  author: "Aryaman Gupta"
+  images: ["images/about.jpg"]
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  # PaperMod Features
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: false
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  UseHugoToc: true
+
+  # Custom CSS
+  assets:
+    favicon: "/images/favicon.png"
+    disableFingerprinting: true
+    css:
+      - "css/extended/custom.css"
+
+  # Social Icons
+  socialIcons:
+    - name: github
+      url: "https://github.com/gupta-aryaman"
+    - name: twitter
+      url: "https://x.com/aryamantwts"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/aryaman-gupta/"
+    - name: rss
+      url: "index.xml"
+
+  homeInfoParams:
+    Title: "Welcome to aryaman.space 👋"
+    Content: "A corner where ideas, projects, and favorite reads come together. Join me as I explore technology, programming, and share my learning journey."
+
+  newsletter:
+    enable: true
+    title: ""
+    content: "Want more content like this? Join my newsletter down below to receive updates to your mailbox"
+    mailchimpFormUrl: "https://space.us14.list-manage.com/subscribe/post?u=9826b167b24adbcba9091190f&amp;id=f90f480251&amp;f_id=00eb8fe1f0"
+    mailchimpFormKey: "b_9826b167b24adbcba9091190f_f90f480251"
+
+  ShareButtons: ["linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegram"]
+
+  # Post Settings
+  newsletter_groups: ["blogs"]  # This ensures newsletter shows up on blog posts
+
+menu:
+  main:
+    - identifier: posts
+      name: Posts
+      url: /
+      weight: 10
+    - identifier: archive
+      name: Archive
+      url: /archives/
+      weight: 20
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 30
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 40
+
+# Enable search
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true # Allows HTML in markdown
+  highlight:
+    noClasses: false
+    lineNos: true
+  tableOfContents:
+    endLevel: 4
+    ordered: false
+    startLevel: 2

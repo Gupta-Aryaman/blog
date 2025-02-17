@@ -1,15 +1,12 @@
-+++
-title = "Chsh Game"
-date = "2024-12-18T19:44:38+05:30"
-draft = true
-
-#
-# description is optional
-#
-# description = "An optional description for SEO. If not provided, an automatically created summary will be used."
-
-tags = ["aryaman-batcave","async","asynchronous","bert","bert-embeddings","breaking-boundaries","char-cnn","conll","corporate","decorators","decorators-in-python","distributed-systems","document","gil","government-job","handwritten-prescription-processing","lstm","medical-text-extraction","mongodb","multithreading","ner","no-gil","python","replication","sharding","spark-nlp","success",]
-+++
+---
+title: "CHSH Game"
+date: "2024-12-18T19:44:38+05:30"
+draft: true
+# description: "An introduction to the CHSH game and its role in proving Bell's Theorem, demonstrating the non-local nature of quantum mechanics."
+tags: ["quantum-computing", "physics", "bells-theorem", "aryaman-batcave"]
+showShareButtons: true
+showToc: true
+---
 
 Bell's theorem is a term encompassing a number of closely related results in physics, all of which determine that quantum mechanics is incompatible with **local hidden-variable theories**, given some basic assumptions about the nature of measurement. 
 
