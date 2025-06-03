@@ -2,7 +2,9 @@
 title: "4 Years, 1000 Lessons: The Story of My B.Tech Journey"
 date: "2025-06-03T20:10:01+05:30"
 showToc: true
-
+draft: true
+tags: ["btech", "introspection"]
+showShareButtons: true
 ---
 
 > “Sometimes, you only understand the path when you’ve walked it to the end.”
