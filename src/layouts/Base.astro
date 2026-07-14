@@ -1,10 +1,8 @@
 ---
-import "@fontsource-variable/newsreader";
-import "@fontsource-variable/newsreader/wght-italic.css";
-import "@fontsource-variable/source-serif-4";
-import "@fontsource-variable/source-serif-4/wght-italic.css";
-import "@fontsource-variable/caveat";
-import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/archivo";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/ibm-plex-mono/700.css";
 import "../styles/global.css";
 
 interface Props {
@@ -26,10 +24,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(image, Astro.site) : undefined;
 
 const nav = [
-  { href: "/", label: "Writing" },
-  { href: "/papershelf/", label: "Papershelf" },
-  { href: "/about/", label: "About" },
-  { href: "/index.xml", label: "RSS" },
+  { href: "/", label: "Writing", key: "W" },
+  { href: "/papershelf/", label: "Papershelf", key: "P" },
+  { href: "/about/", label: "About", key: "A" },
+  { href: "/index.xml", label: "RSS", key: "R" },
 ];
 const path = Astro.url.pathname;
 ---
@@ -64,42 +62,61 @@ const path = Astro.url.pathname;
     </script>
   </head>
   <body>
-    <header class="masthead">
-      <div class="masthead-over">
-        <span>Est. 2023</span>
-        <span>By Aryaman Gupta</span>
-      </div>
-      <a class="masthead-title" href="/">aryaman<i>.space</i></a>
-      <nav>
-        {nav.map(({ href, label }) => (
-          <a href={href} aria-current={path === href ? "page" : undefined}>{label}</a>
-        ))}
-        <button id="theme-toggle" aria-label="Toggle color theme">
-          <svg class="sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M18.7 5.3l-1.5 1.5M6.8 17.2l-1.5 1.5"/></svg>
-          <svg class="moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-        </button>
-      </nav>
-    </header>
+    <div class="sheet">
+      <header class="topbar">
+        <a class="brand" href="/">ARYAMAN<span>.SPACE</span></a>
+        <nav>
+          {nav.map(({ href, label, key }) => (
+            <a href={href} aria-current={path === href ? "page" : undefined}>
+              <span class="key" aria-hidden="true">{key}</span>{label}
+            </a>
+          ))}
+          <button id="theme-toggle" aria-label="Toggle color theme (shortcut: I)">
+            <span class="key" aria-hidden="true">I</span>
+            <span class="toggle-light">Invert</span>
+            <span class="toggle-dark">Revert</span>
+          </button>
+        </nav>
+      </header>
 
-    <main>
-      <slot />
-    </main>
+      <main>
+        <slot />
+      </main>
 
-    <footer class="site-footer">
-      <p class="footer-note">Thanks for reading. — Aryaman ✎</p>
-      <div class="footer-links">
-        <a href="https://github.com/gupta-aryaman" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://x.com/aryamantwts" target="_blank" rel="noopener">Twitter</a>
-        <a href="https://www.linkedin.com/in/aryaman-gupta/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="/index.xml">RSS</a>
-      </div>
-      <p class="footer-copy">© {new Date().getFullYear()} Aryaman Gupta · aryaman.space</p>
-    </footer>
+      <footer class="foot">
+        <span>© {new Date().getFullYear()} ARYAMAN GUPTA</span>
+        <span>
+          <a href="https://github.com/gupta-aryaman" target="_blank" rel="noopener">GitHub</a> ·
+          <a href="https://x.com/aryamantwts" target="_blank" rel="noopener">Twitter</a> ·
+          <a href="https://www.linkedin.com/in/aryaman-gupta/" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="/index.xml">RSS</a>
+        </span>
+        <span>Built with Astro · Set in Archivo + Plex Mono</span>
+      </footer>
+    </div>
 
     <script>
       document.getElementById("theme-toggle")?.addEventListener("click", () => {
         const dark = document.documentElement.classList.toggle("dark");
         localStorage.setItem("theme", dark ? "dark" : "light");
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        const target = e.target as HTMLElement;
+        if (target.closest("input, textarea, select, [contenteditable]")) return;
+        const routes: Record<string, string> = {
+          w: "/",
+          p: "/papershelf/",
+          a: "/about/",
+          r: "/index.xml",
+        };
+        const key = e.key.toLowerCase();
+        if (key === "i") {
+          (document.getElementById("theme-toggle") as HTMLButtonElement)?.click();
+        } else if (routes[key]) {
+          window.location.href = routes[key];
+        }
       });
     </script>
   </body>

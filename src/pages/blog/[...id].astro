@@ -18,71 +18,85 @@ const { Content, headings } = await render(post);
 const words = post.body ? post.body.split(/\s+/).length : 0;
 const minutes = Math.max(1, Math.round(words / 220));
 
-const date = post.data.date.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-  timeZone: "UTC",
-});
+const d = post.data.date;
+const date = `${d.getUTCFullYear()}.${String(d.getUTCMonth() + 1).padStart(2, "0")}.${String(d.getUTCDate()).padStart(2, "0")}`;
 
-const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+const topic = (
+  post.data.tags.find(
+    (t) => t !== "aryaman-batcave" && !post.id.includes(t) && !t.includes(post.id),
+  ) ??
+  post.data.tags[0] ??
+  "notes"
+).replace(/-/g, " ");
+const toc = headings.filter((h) => h.depth === 2).slice(0, 12);
 ---
 
 <Base title={post.data.title} description={post.data.description} article>
-  <article>
-    <header class="article-header">
-      <span class="article-date">{date}</span>
+  <div class="slab">
+    <span class="slash">/</span> Writing <span class="count">[ {date} ]</span>
+  </div>
+  <article class="article">
+    <dl class="article-rail">
+      <dt>/ Date</dt>
+      <dd>{date}</dd>
+      <dt>/ Reading time</dt>
+      <dd>{minutes} min</dd>
+      <dt>/ Topic</dt>
+      <dd>{topic}</dd>
+      <dt>/ Author</dt>
+      <dd>Aryaman Gupta</dd>
+      {
+        toc.length > 1 && (
+          <>
+            <dt>/ Contents</dt>
+            <dd class="toc-list">
+              {toc.map((h, i) => (
+                <a href={`#${h.slug}`}>
+                  <span class="n">{String(i + 1).padStart(2, "0")}</span>
+                  {h.text}
+                </a>
+              ))}
+            </dd>
+          </>
+        )
+      }
+    </dl>
+    <div class="article-main">
       <h1>{post.data.title}</h1>
-      <div class="article-meta">{minutes} min read · by Aryaman Gupta</div>
-    </header>
-
-    {
-      toc.length > 2 && (
-        <details class="toc">
-          <summary>Contents</summary>
-          <ul>
-            {toc.map((h) => (
-              <li class={`toc-depth-${h.depth}`}>
-                <a href={`#${h.slug}`}>{h.text}</a>
-              </li>
+      <div class="prose">
+        <Content />
+      </div>
+      {
+        post.data.tags.length > 0 && (
+          <div class="chips filed-under">
+            <span class="chip fill">{topic}</span>
+            {post.data.tags.slice(1).map((tag) => (
+              <span class="chip">{tag}</span>
             ))}
-          </ul>
-        </details>
-      )
-    }
-
-    <div class="prose">
-      <Content />
+          </div>
+        )
+      }
     </div>
-
-    {
-      post.data.tags.length > 0 && (
-        <p class="filed-under">
-          <b>Filed under</b>
-          {post.data.tags.join(", ")}
-        </p>
-      )
-    }
-
-    <Newsletter />
-
-    {
-      (prev || next) && (
-        <nav class="post-nav">
-          {prev && (
-            <a href={`/blog/${prev.id}/`}>
-              <span class="post-nav-label">← Older</span>
-              {prev.data.title}
-            </a>
-          )}
-          {next && (
-            <a class="next" href={`/blog/${next.id}/`}>
-              <span class="post-nav-label">Newer →</span>
-              {next.data.title}
-            </a>
-          )}
-        </nav>
-      )
-    }
   </article>
+
+  <Newsletter />
+
+  {
+    (prev || next) && (
+      <nav class="post-nav">
+        {prev && (
+          <a href={`/blog/${prev.id}/`}>
+            <span class="post-nav-label">← Older</span>
+            {prev.data.title}
+          </a>
+        )}
+        {next && (
+          <a class="next" href={`/blog/${next.id}/`}>
+            <span class="post-nav-label">Newer →</span>
+            {next.data.title}
+          </a>
+        )}
+      </nav>
+    )
+  }
 </Base>

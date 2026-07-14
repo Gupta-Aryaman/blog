@@ -5,10 +5,13 @@ const { frontmatter } = Astro.props;
 ---
 
 <Base title={frontmatter.title} description={frontmatter.description}>
-  <header class="page-header">
+  <div class="slab">
+    <span class="slash">/</span> {frontmatter.title}
+  </div>
+  <div class="page-body">
     <h1>{frontmatter.title}</h1>
-  </header>
-  <div class="prose">
-    <slot />
+    <div class="prose">
+      <slot />
+    </div>
   </div>
 </Base>

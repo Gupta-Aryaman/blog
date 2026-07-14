@@ -4,14 +4,17 @@ const action =
 ---
 
 <aside class="newsletter">
-  <span class="note">no spam, promise ✎</span>
-  <h2>Enjoyed this post?</h2>
-  <p>Join the newsletter and get new pieces straight to your inbox.</p>
+  <div class="chips" style="margin: 0 0 12px">
+    <span class="chip">/ Newsletter</span>
+    <span class="chip">No spam</span>
+  </div>
+  <h2>Get new posts by transmission</h2>
+  <p>New pieces land in your inbox when they ship. Unsubscribe anytime.</p>
   <form action={action} method="post" target="_blank">
     <input type="email" name="EMAIL" placeholder="you@example.com" required autocomplete="email" />
     <div aria-hidden="true" style="position:absolute;left:-5000px">
       <input type="text" name="b_9826b167b24adbcba9091190f_f90f480251" tabindex="-1" value="" />
     </div>
-    <button type="submit">Subscribe</button>
+    <button type="submit">Subscribe →</button>
   </form>
 </aside>
