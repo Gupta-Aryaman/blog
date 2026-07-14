@@ -39,7 +39,7 @@ A sharded cluster consists of 3 things -
 
 **Config Servers** - They are the authoritative source of sharding metadata. The metadata contains the list of sharded collections, routing info etc.
 
-![](/images/replication-and-sharding-in-mongo/image3.png)
+![Figure: What is Sharding?](/images/replication-and-sharding-in-mongo/image3.png)
 
 ### Why Sharding?
 
@@ -54,16 +54,16 @@ A sharded cluster consists of 3 things -
 
 1. Insert data into primary repl
     
-    ![](/images/replication-and-sharding-in-mongo/image9.png)
+    ![Figure: Data Replication in action](/images/replication-and-sharding-in-mongo/image9.png)
     
 
 Going into a secondary repl and querying peaks collection in peaksDB gives us the replicated result -
 
-![](/images/replication-and-sharding-in-mongo/image10.png)
+![Figure: Data Replication in action](/images/replication-and-sharding-in-mongo/image10.png)
 
 > **WE CANNOT WRITE INTO A REPLICATIONED/SECONDARY DATABASE, WRITES ARE ONLY ALLOWED IN THE PRIMARY REPL.**
 
-![](/images/replication-and-sharding-in-mongo/image11.png)
+![Figure: Data Replication in action](/images/replication-and-sharding-in-mongo/image11.png)
 
 ## Steps to create the above sharded cluster
 
@@ -73,7 +73,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     
 3. Make a0,a1,a2, b0,b1,b2, c0,c1,c2 (represents the replicas of shard a, b, c respectively)
     
-    ![](/images/replication-and-sharding-in-mongo/image13.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image13.png)
     
 4. Run the 3 config servers in different terminals -
     
@@ -105,13 +105,13 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     rs.add("localhost:26052")
     ```
     
-    ![](/images/replication-and-sharding-in-mongo/image14.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image14.png)
     
-    ![](/images/replication-and-sharding-in-mongo/image15.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image15.png)
     
 7. Doing `rs.status()` we can see the members of the replica set -
     
-    ![](/images/replication-and-sharding-in-mongo/image16.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image16.png)
     
 8. Now launch the servers for the shard 'a' having replicas a0, a1, a2 in it's replSet (each server should be launched in different terminals) -
     
@@ -127,7 +127,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     mongod --shardsvr --replSet a --dbpath a2 --port 26002 --logpath log.a2
     ```
     
-    ![](/images/replication-and-sharding-in-mongo/image17.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image17.png)
     
     Do similar to create shards 'b' and 'c' -
     
@@ -145,7 +145,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     
     We can see the servers are actively "LISTENING" on all the ports -
     
-    ![](/images/replication-and-sharding-in-mongo/image18.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image18.png)
     
 9. Now open a new terminal and connect a mongo shell to server running on port 26000, initiate a replSet and add replicas a1 and a2 to it (Inter-connecting the replSet 'a') -
     
@@ -159,7 +159,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     rs.add("localhost:26002")
     ```
     
-    ![](/images/replication-and-sharding-in-mongo/image19.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image19.png)
     
 10. Do the same for replSet 'b' and 'c' -
     
@@ -185,7 +185,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     
     Here, ***–configdb*** represents the ip address of the 3 config servers we created earlier.
     
-    ![](/images/replication-and-sharding-in-mongo/image20.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image20.png)
     
 12. Now connect a mongo shell to this mongos instance (in a new terminal) and start adding the shards to it -
     
@@ -198,7 +198,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     
     In *sh.addShard("a/*[*localhost:26000*](http://localhost:26000)*")*, 'a' represents replSet, and [localhost:26000](http://localhost:26000) represents the Primary Replica of 'a' replSet.
     
-    ![](/images/replication-and-sharding-in-mongo/image21.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image21.png)
     
 13. To see the status of the sharded environment -
     
@@ -206,15 +206,15 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     sh.status()
     ```
     
-    ![](/images/replication-and-sharding-in-mongo/image22.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image22.png)
     
     We can see that the 3 sharded replSets have been added. Also 1 mongos instance is active.
     
-    ![](/images/replication-and-sharding-in-mongo/image23.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image23.png)
     
     Also, we can see that the currently sharded database is only config db, as we have not sharded any other database.
     
-    ![](/images/replication-and-sharding-in-mongo/image24.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image24.png)
     
 14. Lets add peaksDB for sharding -
     
@@ -222,11 +222,11 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     sh.enableSharding("peaksDB")
     ```
     
-    ![](/images/replication-and-sharding-in-mongo/image25.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image25.png)
     
     Now doing `sh.status()`, we can see "peaksDB" in "databases" field -
     
-    ![](/images/replication-and-sharding-in-mongo/image26.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image26.png)
     
 15. We can see 1 sample document inside our 'peaksDB.peaks' collection. Lets shard the collection on 'name' field -
     
@@ -242,11 +242,11 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
         sh.shardCollection("peaksDB.peaks", {name:"hashed"})
         ```
         
-        ![](/images/replication-and-sharding-in-mongo/image27.png)
+        ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image27.png)
         
 16. Now doing `sh.status()` we can see that for our collection "peaksDB.peaks" has a shardKey of 'name' and is present on shard 'c' -
     
-    ![](/images/replication-and-sharding-in-mongo/image28.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image28.png)
     
     Finally, we can get more details of all the shards present -\\
     
@@ -255,7 +255,7 @@ Going into a secondary repl and querying peaks collection in peaksDB gives us th
     db.shards.find()
     ```
     
-    ![](/images/replication-and-sharding-in-mongo/image29.png)
+    ![Figure: Steps to create the above sharded cluster](/images/replication-and-sharding-in-mongo/image29.png)
     
 
 # References

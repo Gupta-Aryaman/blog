@@ -29,9 +29,46 @@ const topic = (
   "notes"
 ).replace(/-/g, " ");
 const toc = headings.filter((h) => h.depth === 2).slice(0, 12);
+
+// first image in the body doubles as the social share image
+const firstImage = post.body?.match(/!\[[^\]]*\]\((\/[^)\s]+)\)/)?.[1];
+const iso = post.data.date.toISOString();
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: iso,
+  dateModified: iso,
+  wordCount: words,
+  timeRequired: `PT${minutes}M`,
+  keywords: post.data.tags.join(", "),
+  image: new URL(firstImage ?? "/images/share.png", Astro.site).toString(),
+  url: new URL(`/blog/${post.id}/`, Astro.site).toString(),
+  mainEntityOfPage: new URL(`/blog/${post.id}/`, Astro.site).toString(),
+  author: {
+    "@type": "Person",
+    name: "Aryaman Gupta",
+    url: "https://aryaman.space/about/",
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Aryaman Gupta",
+    url: "https://aryaman.space",
+  },
+};
 ---
 
-<Base title={post.data.title} description={post.data.description} article>
+<Base
+  title={post.data.title}
+  description={post.data.description}
+  image={firstImage}
+  publishedTime={iso}
+  tags={post.data.tags}
+  schema={schema}
+  article
+>
   <div class="slab">
     <span class="slash">/</span> Writing <span class="count">[ {date} ]</span>
   </div>

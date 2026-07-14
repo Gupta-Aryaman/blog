@@ -56,7 +56,7 @@ foo(DO)
 print(ans)
 ```
 
-![](/images/breaking-boundaries/image2.png)
+![Figure: Code 4.1: CPU Intensive task example](/images/breaking-boundaries/image2.png)
 
 As this was a simple single threaded task, it took around 5 secs and was 99% CPU intensive.
 
@@ -77,7 +77,7 @@ foo(DO)
 print(ans)
 ```
 
-![](/images/breaking-boundaries/image3.png)
+![Figure: Code 4.2: Extension of Code 4.1, 2 CPU Intensive tasks](/images/breaking-boundaries/image3.png)
 
 No issues, as these are CPU intensive tasks, we can run both the tasks on different threads. Hence, simultaneous execution would help us run 2 threads simultaneously and concurrently and the time would be reduced by half.
 
@@ -107,7 +107,7 @@ print(ans)
 
 If this was true multithreading, the time taken for a for loop of half the range of the previous example should be half of the previous time taken, i.e. around 2.5 sec.
 
-![](/images/breaking-boundaries/image4.png)
+![Figure: Code 4.3: CPU Intensive tasks executed in different threads](/images/breaking-boundaries/image4.png)
 
 But we can see it again took roughly the same time. Why is this happening? To understand this we need to look into the core concept of Cpython - GIL.
 
@@ -124,7 +124,7 @@ Generally when we talk about python, we refer to the Cpython implementation of t
 
 Moving forward -
 
-![](/images/breaking-boundaries/image5.png)
+![Figure: GIL?! What is GIL?](/images/breaking-boundaries/image5.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Code 4.1.1: foo function</div></details>
 
@@ -138,25 +138,25 @@ The memory deallocation is done in different ways in different languages but in 
 
 Example - Garbage collectors is used by java
 
-![](/images/breaking-boundaries/image6.png)
+![Figure: GIL?! What is GIL?](/images/breaking-boundaries/image6.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Code 4.1.2a: Reference Counting</div></details>
 
 Then, why do we get a *reference count* of 'a' as 3 here?
 
-![](/images/breaking-boundaries/image7.png)
+![Figure: GIL?! What is GIL?](/images/breaking-boundaries/image7.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">FIgure 4.1.1: Reference Counting explanation</div></details>
 
 This is the reason.
 
-![](/images/breaking-boundaries/image8.png)
+![Figure: GIL?! What is GIL?](/images/breaking-boundaries/image8.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Code 4.1.2b: Reference Counting</div></details>
 
 The main issue comes, when there is concurrency involved in python threads -
 
-![](/images/breaking-boundaries/image9.png)
+![Figure: GIL?! What is GIL?](/images/breaking-boundaries/image9.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Figure 4.1.2: Issue in concurrency  in python due to reference counting</div></details>
 
@@ -164,7 +164,7 @@ Imagine 2 threads are running simultaneously, in CPython. Reference Count of mem
 
 **<mark>But shouldn't the reference count be 5? Race conditions occur in such cases.</mark>** **Hence, the requirement for concurrency management or GIL (Global Interpreter Lock) is required**
 
-![](/images/breaking-boundaries/image10.png)
+![Figure: GIL?! What is GIL?](/images/breaking-boundaries/image10.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Figure 4.1.3: The GLOBAL INTERPRETER LOCK helps maintain reference count</div></details>
 
@@ -202,7 +202,7 @@ t2.join()
 print(ans)
 ```
 
-![](/images/breaking-boundaries/image11.png)
+![Figure: Code 4.3: CPU Intensive tasks executed in different threads](/images/breaking-boundaries/image11.png)
 
 If this was true multithreading, **the time taken for a for loop of half the range of the previous example should be half of the previous time taken, i.e. around 2.5 sec.**
 
@@ -226,9 +226,9 @@ GIL was first introduced in 1999, and had several positive and negative ramifica
 
 Unfortunately until and unless GIL is present this limitation would always be there, hence GIL removal has been a huge topic of discussion in the Cpython implementation.
 
-![](/images/breaking-boundaries/image12.png)
+![Figure: GIL History and Removal Efforts](/images/breaking-boundaries/image12.png)
 
-![](/images/breaking-boundaries/image13.png)
+![Figure: GIL History and Removal Efforts](/images/breaking-boundaries/image13.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Figure 4.2.2: https://peps.python.org/pep-0703/</div></details>
 
@@ -304,7 +304,7 @@ Option 3:
 
 First, he wrote a simple spin-loop and see what happened:
 
-![](/images/breaking-boundaries/image14.png)
+![Figure: Free-Threading Patch - link](/images/breaking-boundaries/image14.png)
 
 Using the original version of Python-1.4 (with the GIL), this code ran in about 1.9 seconds. Using the patched GIL-less version, it ran in about 12.7 seconds. **That's about 6.7 times slower**. Yow!
 
@@ -312,17 +312,17 @@ Just to further confirm his findings, he ran the included Tools/scripts/[pystone
 
 First, with the GIL:
 
-![](/images/breaking-boundaries/image15.png)
+![Figure: Free-Threading Patch - link](/images/breaking-boundaries/image15.png)
 
 Now, without the GIL:
 
-![](/images/breaking-boundaries/image16.png)
+![Figure: Free-Threading Patch - link](/images/breaking-boundaries/image16.png)
 
 Here, the **GIL-less Python is only about 4 times slower.**
 
 To test threads,he wrote a small sample that subdivided the work across two worker threads is an embarrassingly parallel manner (note: this code is a little wonky due to the fact that Python-1.4 doesn't implement thread joining--meaning that we have to do it ourselves with the included binary-semaphore lock).
 
-![](/images/breaking-boundaries/image17.png)
+![Figure: Free-Threading Patch - link](/images/breaking-boundaries/image17.png)
 
 If we run this code with the GIL, the execution time is **about 2.5 seconds or approximately 1.3 times slower than the single-threaded version** (1.9 seconds). Using the **GIL-less Python, the execution time is 18.5 seconds or approximately 1.45 times slower than the single-threaded version** (12.7 seconds). <mark>Just to emphasize, the GIL-less Python running with two-threads is running more than</mark> **<mark>7 times slower</mark>** <mark>than the version with a GIL.&nbsp;</mark> 
 
@@ -356,7 +356,7 @@ So, the things he did were -
     1. Hence, a new lock api was introduce
         
 
-![](/images/breaking-boundaries/image18.jpeg)
+![Figure: Gilectomy by Larry Hastings - link](/images/breaking-boundaries/image18.jpeg)
 
 Here is a benchmarking code given by  *Larry Hastings* himself, as the Gilectomy implementation has a lot of things like "str" etc. which don't work as intended.
 
@@ -393,19 +393,19 @@ This code performs a CPU intensive task of calculating fibonacci of a large numb
 
 > The reason for providing a benchmarking code by Larry was that many **features in Cpython did not work as it is in this Gilectomy's implementation of python. Something as simple as 'str' (string) had a very ambiguous behavior hence, he had to provide a code which could run on both Cpython and Gilectomy.
 
-![](/images/breaking-boundaries/image19.jpg)
+![Figure: https://github.com/larryhastings/gilectomy/blob/gilectomy/x.py](/images/breaking-boundaries/image19.jpg)
 
-![](/images/breaking-boundaries/image20.jpg)
+![Figure: https://github.com/larryhastings/gilectomy/blob/gilectomy/x.py](/images/breaking-boundaries/image20.jpg)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Output 4.4.1 - Output for Benchmarking Code 4.4.1</div></details>
 
-![](/images/breaking-boundaries/image21.png)
+![Figure: https://github.com/larryhastings/gilectomy/blob/gilectomy/x.py](/images/breaking-boundaries/image21.png)
 
 <details data-node-type="hn-details-summary"><summary>Graph Details</summary><div data-type="detailsContent">Graph 4.4.1 - Cpyton(GIL) vs Gilectomy(no GIL) Wall Time taken by code to complete execution - comparison on multithreaded code</div></details>
 
 This graph represents the Wall Time difference in time taken by both the versions of Python. We can see the Gilectomy implementation is **2x times slower**, which is not bad.
 
-![](/images/breaking-boundaries/image22.png)
+![Figure: https://github.com/larryhastings/gilectomy/blob/gilectomy/x.py](/images/breaking-boundaries/image22.png)
 
 <details data-node-type="hn-details-summary"><summary>Graph Details</summary><div data-type="detailsContent">Graph 4.4.2 - Cpyton(GIL) vs Gilectomy(no GIL) CPU Time taken by code to complete execution - comparison on multithreaded code</div></details>
 
@@ -428,7 +428,7 @@ The last update in Pycon 2019 was that after significant work *Larry Hastings* w
 3. That the main technical ideas of this project (reference counting, allocator changes, and thread-safety scheme) should serve as a basis of such an effort.
     
 
-![](/images/breaking-boundaries/image23.png)
+![Figure: nogil by Sam Gross - link](/images/breaking-boundaries/image23.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Figure 4.5.1: nogil speed-up on the pyperformance benchmark suite compared to Python 3.9.0a3. Benchmarking across existing Cpython modules in nogil Python implementation to check speedup/speeddown</div></details>
 
@@ -456,9 +456,9 @@ if threads > 0:
    test()
 ```
 
-![](/images/breaking-boundaries/image24.jpg)
+![Figure: and nogil-3.9.10-1](/images/breaking-boundaries/image24.jpg)
 
-![](/images/breaking-boundaries/image25.jpg)
+![Figure: and nogil-3.9.10-1](/images/breaking-boundaries/image25.jpg)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Output 4.5.1 - Output for Benchmarking Code 4.5.1</div></details>
 
@@ -466,25 +466,25 @@ As we can see here, running code on *nogil* python implementation helped us to u
 
 In the same multithreaded process in a shared-memory multiprocessor environment, **each thread in the process can run concurrently on a separate processor**, resulting in parallel execution, which is true simultaneous execution.
 
-![](/images/breaking-boundaries/image26.png)
+![Figure: and nogil-3.9.10-1](/images/breaking-boundaries/image26.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Figure 4.5.2: nogil multithreaded execution - htop view of CPU utilization (7 threads)</div></details>
 
 Meanwhile, creating 7 threads on Cpython implementation gives really poor performance, as even though 7 threads exist, only 1 of them is running truly at a particular moment.
 
-![](/images/breaking-boundaries/image27.png)
+![Figure: and nogil-3.9.10-1](/images/breaking-boundaries/image27.png)
 
 <details data-node-type="hn-details-summary"><summary>Figure Details</summary><div data-type="detailsContent">Figure 4.5.3: Cpython multithreaded execution - htop view of CPU utilization (7 threads)</div></details>
 
 The shear performance improvement in nogil implementation over Cpython is mind blowing, making us wonder the highs MultiThreading in Python can touch -
 
-![](/images/breaking-boundaries/image28.png)
+![Figure: and nogil-3.9.10-1](/images/breaking-boundaries/image28.png)
 
 <details data-node-type="hn-details-summary"><summary>Graph Details</summary><div data-type="detailsContent">Graph 4.5.1: Cpyton(GIL) vs nogil CPU Time taken by code to complete execution - comparison on multithreaded code</div></details>
 
 As it is clearly visible, nogil completely outperforms the Cpython, even giving better performance in a single threaded program.
 
-![](/images/breaking-boundaries/image29.png)
+![Figure: and nogil-3.9.10-1](/images/breaking-boundaries/image29.png)
 
 <details data-node-type="hn-details-summary"><summary>Graph Details</summary><div data-type="detailsContent">Graph 4.5.2: Cpyton(GIL) vs nogil ratio of improvement in execution time - (nogil / Cpython)</div></details>
 
@@ -523,7 +523,7 @@ if __name__ == "__main__":
    print("Done!")
 ```
 
-![](/images/breaking-boundaries/image30.png)
+![Figure: Code 5.1: Multiprocessing demonstration in python](/images/breaking-boundaries/image30.png)
 
 The multiprocessing library has a number of downsides.
 

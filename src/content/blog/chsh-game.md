@@ -24,12 +24,12 @@ The CHSH game is an example of **nonlocal game**. The setup is as follows -
 * The game is run by a *referee*.
 * Alice andd Bob can prepare for the game however they choose, but once the game starts they are **forbidden from communicating**.
 
-![](/images/chsh-game/setup.png)
+![Figure: The Setup](/images/chsh-game/setup.png)
 
 ## The Referee
 The referee determines whether the pair of answers (a, b) **wins or loses** for the question pair (x, y) according to some fixed rule.
 
-![](/images/chsh-game/referee.png)
+![Figure: The Referee](/images/chsh-game/referee.png)
 
 * The questions and answers are all bits `x, y, a, b ∈ {0, 1}`
 * The questions x and y are chosen uniformly at random.

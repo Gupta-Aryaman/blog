@@ -1,6 +1,7 @@
 ---
 title: "Asynchronous Programming in Python"
 date: 2023-09-21
+description: "A practical introduction to async programming in Python — event loops, coroutines, asyncio, and when async actually makes your code faster."
 tags: ["asynchronous", "async", "python", "aryaman-batcave"]
 ---
 
@@ -22,7 +23,7 @@ foo()
 print("Termination of the program")
 ```
 
-![](/images/asynchronous-programming-in-python/image1.png)
+![Figure: Sync vs Async](/images/asynchronous-programming-in-python/image1.png)
 
 Here, you can observe that the program's execution was strictly sequential, and this led to a halt in the entire program due to a blocking operation inside the `foo()` function, which took 10 seconds to complete. After this 10-second delay, the program continued its execution.
 
@@ -55,7 +56,7 @@ So when we call this function, it creates a coroutine object `<coroutine object 
 
 Wait, WHAT?! <mark>What's </mark> [<mark>awaiting</mark>](https://docs.python.org/3/library/asyncio-task.html#awaitables)<mark>?</mark> Let me show you the output of the above snippet of code.
 
-![](/images/asynchronous-programming-in-python/image3.png)
+![Figure: What's a coroutine in Python?](/images/asynchronous-programming-in-python/image3.png)
 
 As we have a coroutine object now, it does not work like a regular Python function.
 
@@ -72,7 +73,7 @@ async def main():
 await main()
 ```
 
-![](/images/asynchronous-programming-in-python/image4.png)
+![Figure: Async Event-Loop](/images/asynchronous-programming-in-python/image4.png)
 
 Oh, no! It gave an error. So what's the issue? The reason it's not running our code because we haven't created an [*event-loop.*](https://docs.python.org/3/library/asyncio-eventloop.html)
 
@@ -110,7 +111,7 @@ If we look inside the `foo()` function, the [*await keyword*](https://docs.pytho
 
 And we are allowed to use await because we are present inside an asynchronous function. So, if we try to see the output of the entire code, it would be as follows:
 
-![](/images/asynchronous-programming-in-python/image5.png)
+![Figure: Await keyword](/images/asynchronous-programming-in-python/image5.png)
 
 We can see that we awaited the `foo()` function call, and going inside the `foo()` function we waited for 1 sec and then the execution was back to the `main()` function.
 
@@ -138,7 +139,7 @@ asyncio.run(main())
 
 If we see the code above, we are creating a task using the `create_task()` function and passing a coroutine object to it. This essentially tells the program to run the task as soon as there is some kind of waiting in the main line of execution.
 
-![](/images/asynchronous-programming-in-python/image6.png)
+![Figure: asyncio Tasks](/images/asynchronous-programming-in-python/image6.png)
 
 Analyzing the output, we can see that the execution of the main() function is completed and then the execution of foo() starts.
 
@@ -169,7 +170,7 @@ asyncio.run(main())
 
 Hence the output would be as follows (note the time taken for execution).
 
-![](/images/asynchronous-programming-in-python/image8.png)
+![Figure: asyncio Tasks](/images/asynchronous-programming-in-python/image8.png)
 
 ### More Examples
 
@@ -202,7 +203,7 @@ asyncio.run(main())
 
 Imagine the above scenario where I need to get the return value `{'data': 1}` from the `fetch_data()` coroutine executing via task1 in the `main()` function. Hence, I declare the task1 and `print(task1)`. It would have worked in a synchronous environment. But, from what we have learned so far this is counterintuitive.
 
-![](/images/asynchronous-programming-in-python/image9.png)
+![Figure: More Examples](/images/asynchronous-programming-in-python/image9.png)
 
 As we can see in the output of the above code, we never *awaited* for the task to be completed, hence we would never get the return value from the function (can relate to promises in JavaScript).
 
@@ -235,7 +236,7 @@ async def main():
 asyncio.run(main())
 ```
 
-![](/images/asynchronous-programming-in-python/image10.png)
+![Figure: More Examples](/images/asynchronous-programming-in-python/image10.png)
 
 As we can see in the output, because we awaited for task1 to finish, we can get the value returned by it and print it later. We can further see that as `fetch_data()` was waiting for 2 sec, for loop in `print_numbers()` executed 8 times (~2 sec) and gave a chance back to fetch\_data() as it's waiting time had ended.
 

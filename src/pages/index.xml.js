@@ -8,13 +8,17 @@ export async function GET(context) {
 
   return rss({
     title: "aryaman.space",
-    description: "A corner where ideas, projects, and favorite reads come together.",
+    description:
+      "Aryaman Gupta's engineering blog — deep dives into Python internals, distributed systems, NLP, and the papers worth reading twice.",
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.date,
       link: `/blog/${post.id}/`,
+      categories: post.data.tags,
+      content: post.rendered?.html,
     })),
+    customData: "<language>en</language>",
   });
 }

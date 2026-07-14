@@ -56,6 +56,32 @@ const shelf = [
   { ref: "Quantum", t: "Quantum Supremacy Using a Programmable Superconducting Processor", a: "Arute et al. · 2019" },
 ];
 
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "aryaman.space",
+      url: "https://aryaman.space",
+      description:
+        "Aryaman Gupta's engineering blog — deep dives into Python internals, distributed systems, NLP, and the papers worth reading twice.",
+      author: { "@id": "https://aryaman.space/#person" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://aryaman.space/#person",
+      name: "Aryaman Gupta",
+      url: "https://aryaman.space",
+      jobTitle: "Software Engineer",
+      sameAs: [
+        "https://github.com/gupta-aryaman",
+        "https://x.com/aryamantwts",
+        "https://www.linkedin.com/in/aryamangupta1/",
+      ],
+    },
+  ],
+};
+
 const tickerItems = [
   ["Posts shipped", String(published).padStart(2, "0")],
   ["Drafts brewing", String(drafts).padStart(2, "0")],
@@ -65,7 +91,7 @@ const tickerItems = [
 ];
 ---
 
-<Base>
+<Base schema={schema}>
   <section class="hero">
     <div class="eyebrow">Personal engineering notes · Est. 2023</div>
     <h1>Aryaman<br />Dot Space<span class="cursor"></span></h1>
