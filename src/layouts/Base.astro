@@ -1,0 +1,106 @@
+---
+import "@fontsource-variable/newsreader";
+import "@fontsource-variable/newsreader/wght-italic.css";
+import "@fontsource-variable/source-serif-4";
+import "@fontsource-variable/source-serif-4/wght-italic.css";
+import "@fontsource-variable/caveat";
+import "@fontsource-variable/jetbrains-mono";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+}
+
+const {
+  title,
+  description = "A corner where ideas, projects, and favorite reads come together.",
+  image,
+  article = false,
+} = Astro.props;
+
+const siteTitle = title ? `${title} · aryaman.space` : "aryaman.space";
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image ? new URL(image, Astro.site) : undefined;
+
+const nav = [
+  { href: "/", label: "Writing" },
+  { href: "/papershelf/", label: "Papershelf" },
+  { href: "/about/", label: "About" },
+  { href: "/index.xml", label: "RSS" },
+];
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Aryaman Gupta" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/images/favicon.png" type="image/png" />
+    <link rel="alternate" type="application/rss+xml" title="aryaman.space" href="/index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:title" content={title ?? "aryaman.space"} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="aryaman.space" />
+    <meta property="og:type" content={article ? "article" : "website"} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:site" content="@aryamantwts" />
+
+    <script is:inline>
+      const stored = localStorage.getItem("theme");
+      const dark = stored ? stored === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
+    </script>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead-over">
+        <span>Est. 2023</span>
+        <span>By Aryaman Gupta</span>
+      </div>
+      <a class="masthead-title" href="/">aryaman<i>.space</i></a>
+      <nav>
+        {nav.map(({ href, label }) => (
+          <a href={href} aria-current={path === href ? "page" : undefined}>{label}</a>
+        ))}
+        <button id="theme-toggle" aria-label="Toggle color theme">
+          <svg class="sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M18.7 5.3l-1.5 1.5M6.8 17.2l-1.5 1.5"/></svg>
+          <svg class="moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-note">Thanks for reading. — Aryaman ✎</p>
+      <div class="footer-links">
+        <a href="https://github.com/gupta-aryaman" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://x.com/aryamantwts" target="_blank" rel="noopener">Twitter</a>
+        <a href="https://www.linkedin.com/in/aryaman-gupta/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/index.xml">RSS</a>
+      </div>
+      <p class="footer-copy">© {new Date().getFullYear()} Aryaman Gupta · aryaman.space</p>
+    </footer>
+
+    <script>
+      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const dark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", dark ? "dark" : "light");
+      });
+    </script>
+  </body>
+</html>

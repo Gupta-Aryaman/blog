@@ -1,0 +1,77 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft || import.meta.env.DEV))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const [featured, ...rest] = posts;
+
+const featureLabel = featured.data.date.toLocaleDateString("en-US", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+const words = featured.body ? featured.body.split(/\s+/).length : 0;
+const minutes = Math.max(1, Math.round(words / 220));
+
+// first real paragraph of the body as a fallback description
+const excerpt =
+  featured.data.description ??
+  (featured.body ?? "")
+    .split(/\r?\n\r?\n/)
+    .map((p) => p.trim())
+    .find((p) => p && !p.startsWith("#") && !p.startsWith("![") && !p.startsWith("<") && !p.startsWith(">") && !p.startsWith("```"))
+    ?.replace(/[*_`>[\]]/g, "")
+    .replace(/\(([^)]*)\)/g, "")
+    .slice(0, 220)
+    .concat("…") ??
+  "";
+
+const fmt = (d: Date) =>
+  d
+    .toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })
+    .replace(" ", " ");
+
+const shelf = [
+  "Attention Is All You Need",
+  "MemGPT: Towards LLMs as Operating Systems",
+  "Quantum Supremacy Using a Programmable Superconducting Processor",
+];
+---
+
+<Base>
+  <section class="feature">
+    <span class="note margin-note">{minutes} min, worth it ✎</span>
+    <div>
+      <span class="feature-label">Latest — {featureLabel}</span>
+      <h2><a href={`/blog/${featured.id}/`}>{featured.data.title}</a></h2>
+      <p class="feature-desc">{excerpt}</p>
+      <div class="feature-meta">
+        <a href={`/blog/${featured.id}/`}>Read the piece →</a>
+      </div>
+    </div>
+    <aside>
+      <div class="aside-head">On the papershelf</div>
+      {shelf.map((paper) => (
+        <p><a href="/papershelf/">{paper}</a></p>
+      ))}
+      <a class="aside-more" href="/papershelf/">Browse the shelf →</a>
+    </aside>
+  </section>
+
+  <section class="archive">
+    <div class="archive-head">The Archive</div>
+    <ul>
+      {rest.map((post) => (
+        <li class="entry">
+          <a href={`/blog/${post.id}/`}>
+            <b>{post.data.title}</b>
+            <span>{fmt(post.data.date)}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

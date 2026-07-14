@@ -1,0 +1,88 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Newsletter from "../../components/Newsletter.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft || import.meta.env.DEV);
+  const sorted = posts.sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+  return sorted.map((post, i) => ({
+    params: { id: post.id },
+    props: { post, prev: sorted[i - 1], next: sorted[i + 1] },
+  }));
+}
+
+const { post, prev, next } = Astro.props;
+const { Content, headings } = await render(post);
+
+const words = post.body ? post.body.split(/\s+/).length : 0;
+const minutes = Math.max(1, Math.round(words / 220));
+
+const date = post.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+
+const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+<Base title={post.data.title} description={post.data.description} article>
+  <article>
+    <header class="article-header">
+      <span class="article-date">{date}</span>
+      <h1>{post.data.title}</h1>
+      <div class="article-meta">{minutes} min read · by Aryaman Gupta</div>
+    </header>
+
+    {
+      toc.length > 2 && (
+        <details class="toc">
+          <summary>Contents</summary>
+          <ul>
+            {toc.map((h) => (
+              <li class={`toc-depth-${h.depth}`}>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    {
+      post.data.tags.length > 0 && (
+        <p class="filed-under">
+          <b>Filed under</b>
+          {post.data.tags.join(", ")}
+        </p>
+      )
+    }
+
+    <Newsletter />
+
+    {
+      (prev || next) && (
+        <nav class="post-nav">
+          {prev && (
+            <a href={`/blog/${prev.id}/`}>
+              <span class="post-nav-label">← Older</span>
+              {prev.data.title}
+            </a>
+          )}
+          {next && (
+            <a class="next" href={`/blog/${next.id}/`}>
+              <span class="post-nav-label">Newer →</span>
+              {next.data.title}
+            </a>
+          )}
+        </nav>
+      )
+    }
+  </article>
+</Base>

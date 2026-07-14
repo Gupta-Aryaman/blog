@@ -1,48 +1,53 @@
-# Blog
+# aryaman.space
 
-This repository contains the source code for a blog built using [Hugo](https://gohugo.io/).
+Source for [aryaman.space](https://aryaman.space) — a minimal blog built with [Astro](https://astro.build) and deployed to GitHub Pages automatically via GitHub Actions.
 
-## Project Description
-This project is a static site generated using Hugo. It is designed to be a simple and fast solution for creating and managing a blog.
+## Writing a new post
 
-## Technologies Used
-- HTML
-- Hugo (Static Site Generator)
+Create a markdown file in `src/content/blog/` — the filename becomes the URL (`my-new-post.md` → `aryaman.space/blog/my-new-post/`):
 
-## Adding a New Page in Hugo
-To add a new page in Hugo, use the following command:
-```
-hugo new <section>/<page-name>.md
-```
-For example, to create a new blog post, you can run:
-```
-hugo new posts/my-new-post.md
+```markdown
+---
+title: "My New Post"
+date: 2026-07-13
+description: "One-line summary shown on the homepage and in search results."
+tags: ["python", "asyncio"]
+---
+
+Your content here. Regular markdown — code blocks get syntax
+highlighting automatically, and headings build the table of contents.
 ```
 
-## Generating HTML in Hugo
-To generate the static HTML files from your Hugo site, use the following command:
-```
-hugo
-```
-This command will build your site and output the generated files to the `public` directory.
+Add `draft: true` to the front matter to keep a post unpublished.
 
-## Hugo Themes
-For exploring different Hugo themes visit the [Hugo Templates Documentation](https://themes.gohugo.io/).
+Put images in `public/images/<post-name>/` and reference them as `/images/<post-name>/image1.png`.
 
-## Getting Started
-1. Clone the repository
-```
-git clone https://github.com/Gupta-Aryaman/blog.git
-cd blog
-```
-2. Install Hugo
-Follow the instructions on the [Hugo Installation Guide](https://gohugo.io/installation/) to install Hugo on your machine.
-3. Run the development server
-```
-hugo server
-```
-Open http://localhost:1313 with your browser to see the result.
+Then commit and push — GitHub Actions builds and deploys the site automatically:
 
-## Hosting on gh-pages
-For using hugo and hosting it on github-pages, refer this [video](https://www.youtube.com/watch?v=LIFvgrRxdt4). <br>
-For adding dynamic content (like newsletter) on hugo website, refer this [video](https://www.youtube.com/watch?v=YB1jijL26FM).
+```
+git add . && git commit -m "New post" && git push
+```
+
+## Running locally (optional)
+
+Requires [Node.js](https://nodejs.org) 20+. You don't need this to publish — pushing to `main` is enough.
+
+```
+npm install
+npm run dev      # live preview at http://localhost:4321
+npm run build    # production build into dist/
+```
+
+## How deployment works
+
+`.github/workflows/deploy.yml` runs on every push to `main`: it builds the site with Astro and publishes it to GitHub Pages (Settings → Pages → Source must be set to **GitHub Actions**). The custom domain is set by `public/CNAME`.
+
+## Structure
+
+```
+src/content/blog/   ← blog posts (markdown)
+src/pages/          ← standalone pages (about, papershelf), RSS, 404
+src/layouts/        ← page shells (header/footer/head)
+src/styles/         ← the design system (global.css)
+public/             ← images, videos, favicon, CNAME
+```
