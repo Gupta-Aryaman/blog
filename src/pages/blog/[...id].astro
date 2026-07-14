@@ -4,7 +4,7 @@ import Base from "../../layouts/Base.astro";
 import Newsletter from "../../components/Newsletter.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft || import.meta.env.DEV);
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
   const sorted = posts.sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
   return sorted.map((post, i) => ({
     params: { id: post.id },

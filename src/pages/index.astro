@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 
 const all = await getCollection("blog");
 const posts = all
-  .filter(({ data }) => !data.draft || import.meta.env.DEV)
+  .filter(({ data }) => !data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const published = all.filter(({ data }) => !data.draft).length;
@@ -67,17 +67,14 @@ const tickerItems = [
 
 <Base>
   <section class="hero">
-    <div class="hero-copy">
-      <div class="eyebrow">Personal engineering notes · Est. 2023</div>
-      <h1>Aryaman<br />Dot<br />Space<span class="cursor"></span></h1>
+    <div class="eyebrow">Personal engineering notes · Est. 2023</div>
+    <h1>Aryaman<br />Dot Space<span class="cursor"></span></h1>
+    <div class="hero-foot">
       <p>
         I take systems apart and write down what I find — <code>python</code> internals,
         distributed systems, NLP pipelines, and the papers worth reading twice.
       </p>
-    </div>
-    <div class="hero-fig">
-      <canvas id="fig1" width="440" height="300" aria-hidden="true"></canvas>
-      <div class="fig-tag"><span>[ Fig. 1 ] — Signal, sampled</span><span>60 FPS</span></div>
+      <a href="/blog/" class="hero-cta">Browse all posts →</a>
     </div>
   </section>
 
@@ -85,7 +82,7 @@ const tickerItems = [
   <section class="feature">
     <div class="feature-fig">
       <canvas id="fig2" width="340" height="240" aria-hidden="true"></canvas>
-      <div class="fig-tag"><span>[ Fig. 2 ] — Random walk</span><span>{topic(featured.data.tags, featured.id)}</span></div>
+      <div class="fig-tag"><span>[ Fig. 1 ] — Random walk</span><span>{topic(featured.data.tags, featured.id)}</span></div>
     </div>
     <div class="feature-body">
       <h2><a href={`/blog/${featured.id}/`}>{featured.data.title}</a></h2>
@@ -114,7 +111,10 @@ const tickerItems = [
     </div>
   </div>
 
-  <div class="slab"><span class="slash">/</span> Index <span class="count">[ All posts — {total} ]</span></div>
+  <div class="slab">
+    <span class="slash">/</span> Index — recent
+    <a class="count" href="/blog/">[ View all — {total} → ]</a>
+  </div>
   <div class="index-head">
     <div>/ Date</div>
     <div>/ Name</div>
@@ -122,7 +122,7 @@ const tickerItems = [
     <div></div>
   </div>
   {
-    rest.map((post) => (
+    rest.slice(0, 4).map((post) => (
       <a class="row" href={`/blog/${post.id}/`}>
         <div class="date">{fmtDate(post.data.date)}</div>
         <div class="name">
@@ -151,34 +151,7 @@ const tickerItems = [
     const ink = () => getComputedStyle(document.documentElement).getPropertyValue("--ink").trim();
     const panel = () => getComputedStyle(document.documentElement).getPropertyValue("--panel").trim();
 
-    // Fig. 1 — a sampled sine field of dots
-    const c1 = document.getElementById("fig1") as HTMLCanvasElement | null;
-    if (c1) {
-      const x1 = c1.getContext("2d")!;
-      let t = 0;
-      const draw1 = () => {
-        const w = c1.width, h = c1.height;
-        x1.clearRect(0, 0, w, h);
-        x1.fillStyle = ink();
-        const cols = 26, rows = 16;
-        for (let i = 0; i < cols; i++) {
-          for (let j = 0; j < rows; j++) {
-            const px = (i + 0.5) * (w / cols);
-            const py = (j + 0.5) * (h / rows);
-            const v = Math.sin(i * 0.55 + t) + Math.cos(j * 0.45 - t * 0.8);
-            const r = Math.max(0.4, (v + 2) * 1.15);
-            x1.beginPath();
-            x1.arc(px, py, r, 0, Math.PI * 2);
-            x1.fill();
-          }
-        }
-        t += 0.035;
-        if (!reduced) requestAnimationFrame(draw1);
-      };
-      draw1();
-    }
-
-    // Fig. 2 — pixel random walker
+    // Fig. 1 — pixel random walker
     const c2 = document.getElementById("fig2") as HTMLCanvasElement | null;
     if (c2) {
       const x2 = c2.getContext("2d")!;

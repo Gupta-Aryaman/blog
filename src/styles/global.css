@@ -164,43 +164,42 @@ main > :first-child .slab:first-child {
   text-align: right;
 }
 
+a.count:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
 /* ---------- hero ---------- */
 
 .hero {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  padding: 48px 36px 40px;
   border-bottom: 1px solid var(--ink);
 }
 
-.hero-copy {
-  padding: 44px 36px 40px;
-  border-right: 1px solid var(--ink);
-}
-
-.hero-copy .eyebrow {
+.hero .eyebrow {
   font-family: var(--font-m);
   font-size: 0.6563rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--mute);
-  margin-bottom: 22px;
+  margin-bottom: 26px;
 }
 
-.hero-copy h1 {
-  font-size: clamp(38px, 6vw, 62px);
+.hero h1 {
+  font-size: clamp(48px, 9.5vw, 104px);
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
   text-transform: uppercase;
-  text-wrap: balance;
 }
 
-.hero-copy h1 .cursor {
+.hero h1 .cursor {
   display: inline-block;
   width: 0.45em;
-  height: 0.82em;
+  height: 0.8em;
   background: var(--ink);
-  vertical-align: -0.06em;
+  vertical-align: -0.04em;
+  margin-left: 0.06em;
   animation: blink 1.1s steps(1) infinite;
 }
 
@@ -208,14 +207,22 @@ main > :first-child .slab:first-child {
   50% { opacity: 0; }
 }
 
-.hero-copy p {
-  margin-top: 22px;
-  max-width: 42ch;
+.hero-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.hero-foot p {
+  max-width: 52ch;
   font-size: 0.9063rem;
   color: var(--soft);
 }
 
-.hero-copy p code {
+.hero-foot p code {
   font-family: var(--font-m);
   font-size: 0.9em;
   background: var(--panel);
@@ -223,14 +230,21 @@ main > :first-child .slab:first-child {
   border: 1px solid var(--hair);
 }
 
-.hero-fig {
-  position: relative;
-  background: var(--panel);
-  display: flex;
-  flex-direction: column;
+.hero-cta {
+  font-family: var(--font-m);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink);
+  padding: 9px 16px;
+  white-space: nowrap;
 }
 
-.hero-fig canvas,
+.hero-cta:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
 .feature-fig canvas {
   width: 100%;
   height: 100%;
@@ -906,19 +920,13 @@ a.paper-card:hover .t {
     padding: 8px;
   }
 
-  .hero,
   .feature,
   .article {
     grid-template-columns: 1fr;
   }
 
-  .hero-copy {
-    border-right: none;
+  .hero {
     padding: 32px 20px 28px;
-  }
-
-  .hero-fig {
-    border-top: 1px solid var(--ink);
   }
 
   .feature-fig {

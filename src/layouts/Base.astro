@@ -24,12 +24,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(image, Astro.site) : undefined;
 
 const nav = [
-  { href: "/", label: "Writing", key: "W" },
+  { href: "/blog/", label: "Blogs", key: "B" },
   { href: "/papershelf/", label: "Papershelf", key: "P" },
   { href: "/about/", label: "About", key: "A" },
   { href: "/index.xml", label: "RSS", key: "R" },
 ];
 const path = Astro.url.pathname;
+const current = (href: string) => path === href || (href === "/blog/" && path.startsWith("/blog/"));
 ---
 
 <!doctype html>
@@ -67,7 +68,7 @@ const path = Astro.url.pathname;
         <a class="brand" href="/">ARYAMAN<span>.SPACE</span></a>
         <nav>
           {nav.map(({ href, label, key }) => (
-            <a href={href} aria-current={path === href ? "page" : undefined}>
+            <a href={href} aria-current={current(href) ? "page" : undefined}>
               <span class="key" aria-hidden="true">{key}</span>{label}
             </a>
           ))}
@@ -106,7 +107,8 @@ const path = Astro.url.pathname;
         const target = e.target as HTMLElement;
         if (target.closest("input, textarea, select, [contenteditable]")) return;
         const routes: Record<string, string> = {
-          w: "/",
+          h: "/",
+          b: "/blog/",
           p: "/papershelf/",
           a: "/about/",
           r: "/index.xml",
