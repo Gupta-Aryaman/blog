@@ -770,6 +770,13 @@ a.paper-card:hover .t {
 .newsletter {
   border-top: 1px solid var(--ink);
   padding: 24px 36px 28px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.newsletter .chip {
+  border-color: var(--paper);
+  color: var(--paper);
 }
 
 .newsletter h2 {
@@ -780,7 +787,7 @@ a.paper-card:hover .t {
 
 .newsletter p {
   font-size: 0.8438rem;
-  color: var(--mute);
+  color: color-mix(in srgb, var(--paper) 65%, transparent);
   margin-top: 0.25rem;
   max-width: 52ch;
 }
@@ -798,15 +805,19 @@ a.paper-card:hover .t {
   min-width: 12rem;
   font-family: var(--font-m);
   font-size: 0.8125rem;
-  color: var(--ink);
-  background: var(--paper);
-  border: 1px solid var(--ink);
+  color: var(--paper);
+  background: transparent;
+  border: 1px solid var(--paper);
   border-radius: 0;
   padding: 0.5625rem 0.875rem;
 }
 
+.newsletter input[type="email"]::placeholder {
+  color: color-mix(in srgb, var(--paper) 45%, transparent);
+}
+
 .newsletter input[type="email"]:focus {
-  outline: 1px solid var(--ink);
+  outline: 1px solid var(--paper);
   outline-offset: -2px;
 }
 
@@ -817,16 +828,16 @@ a.paper-card:hover .t {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
-  background: var(--ink);
-  color: var(--paper);
-  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--paper);
   border-radius: 0;
   padding: 0.5625rem 1.375rem;
 }
 
 .newsletter button:hover {
-  background: var(--paper);
-  color: var(--ink);
+  background: transparent;
+  color: var(--paper);
 }
 
 .post-nav {
